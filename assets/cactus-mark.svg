@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 685 1163" fill="none">
+  <!-- Cactus Ethiopia Official Brand Mark Glyph (Vector Architectural Master) -->
+  <!-- Left Capsule -->
+  <rect x="40" y="230" width="138" height="415" rx="69" fill="currentColor" />
+
+  <!-- Center Pillar with Rounded Dome and Flared Pedestal Base -->
+  <path d="
+    M 248 135.5
+    A 94.5 94.5 0 0 1 437 135.5
+    L 437 1070
+    C 437 1092 485 1115 545 1123
+    L 140 1123
+    C 200 1115 248 1092 248 1070
+    Z
+  " fill="currentColor" />
+
+  <!-- Right Capsule -->
+  <rect x="507" y="463" width="138" height="415" rx="69" fill="currentColor" />
+</svg>

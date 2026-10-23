@@ -1,0 +1,188 @@
+/* ==========================================================================
+   CACTUS ETHIOPIA — PERIPHERAL BRAND ARCHITECTURAL SYSTEM
+   "Brand Identity in the Viewport Margins & Peripheral Negative Space"
+   ========================================================================== */
+
+/* The root architectural glyph component */
+.brand-monolith {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  overflow: hidden;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease, color 500ms ease;
+}
+
+.brand-monolith svg,
+.brand-monolith img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   PERIPHERAL EDGE PLACEMENTS (EXTREME LEFT & RIGHT MARGINS)
+   - Sits 35%–50% off-screen
+   - Heavily cropped by viewport
+   - Occupies unused peripheral negative space
+   - Keeps center content 100% clean
+   -------------------------------------------------------------------------- */
+
+/* Far Right Edge: Emerges from the right viewport margin */
+.brand-monolith--edge-right {
+  top: 50%;
+  right: clamp(-200px, -11vw, -300px);
+  height: clamp(520px, 80vh, 1020px);
+  aspect-ratio: 685 / 1163;
+  transform: translateY(-50%) rotate(-3deg);
+}
+
+/* Far Left Edge: Emerges from the left viewport margin */
+.brand-monolith--edge-left {
+  top: 50%;
+  left: clamp(-200px, -11vw, -300px);
+  height: clamp(520px, 80vh, 1020px);
+  aspect-ratio: 685 / 1163;
+  transform: translateY(-50%) rotate(3deg);
+}
+
+/* Hero Right Edge: Anchors top-right margin of dark/light hero banners */
+.brand-monolith--hero-edge-right,
+.brand-monolith--hero-right {
+  top: -15%;
+  right: clamp(-180px, -9vw, -280px);
+  height: clamp(540px, 85vh, 1080px);
+  aspect-ratio: 685 / 1163;
+  transform: rotate(-4deg);
+}
+
+/* Hero Left Edge: Anchors top-left margin of hero banners */
+.brand-monolith--hero-edge-left,
+.brand-monolith--hero-left {
+  top: -15%;
+  left: clamp(-180px, -9vw, -280px);
+  height: clamp(540px, 85vh, 1080px);
+  aspect-ratio: 685 / 1163;
+  transform: rotate(4deg);
+}
+
+/* Section Right Asymmetric: Sits on the extreme right margin */
+.brand-monolith--section-right {
+  top: 50%;
+  right: clamp(-200px, -11vw, -300px);
+  height: clamp(520px, 78vh, 980px);
+  aspect-ratio: 685 / 1163;
+  transform: translateY(-50%) rotate(-2.5deg);
+}
+
+/* Section Left Asymmetric: Sits on the extreme left margin */
+.brand-monolith--section-left {
+  top: 50%;
+  left: clamp(-200px, -11vw, -300px);
+  height: clamp(520px, 78vh, 980px);
+  aspect-ratio: 685 / 1163;
+  transform: translateY(-50%) rotate(2.5deg);
+}
+
+/* Slide Panel Bleed: Far edge of creative showcase */
+.brand-monolith--slide-panel {
+  bottom: -15%;
+  right: -15%;
+  height: clamp(400px, 62vh, 760px);
+  aspect-ratio: 685 / 1163;
+  transform: rotate(5deg);
+}
+
+/* STRICT RULE: Centered watermarks / backdrops are disabled across the site */
+.brand-monolith--center-backdrop {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   TONAL & COLOR THEMES (SUBTLE, EDITORIAL & RESTRAINED)
+   -------------------------------------------------------------------------- */
+
+/* Light Canvas Theme (Cream / White backgrounds) */
+.brand-monolith--theme-emerald {
+  color: #1a7a5a;
+  opacity: 0.038;
+}
+
+/* Dark Canvas Theme (Obsidian / Dark Emerald backgrounds) */
+.brand-monolith--theme-obsidian {
+  color: #2feaa0;
+  opacity: 0.075;
+  filter: drop-shadow(0 0 90px rgba(47, 234, 160, 0.08));
+}
+
+/* Adaptive Service Tint: Dynamically inherits CSS variable --monolith-tint */
+.brand-monolith--theme-adaptive {
+  color: var(--monolith-tint, #1a7a5a);
+  opacity: var(--monolith-opacity, 0.04);
+  transition: color 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms ease;
+}
+
+/* Blueprint / Wireframe Outline Mode */
+.brand-monolith--wireframe svg rect,
+.brand-monolith--wireframe svg path {
+  fill: none !important;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-dasharray: 8 6;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS (Mobile & Tablet Safe — Viewport Boundaries)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .brand-monolith--edge-right,
+  .brand-monolith--hero-edge-right,
+  .brand-monolith--hero-right,
+  .brand-monolith--section-right {
+    right: clamp(-200px, -18vw, -300px);
+    height: clamp(400px, 60vh, 700px);
+    opacity: 0.048;
+  }
+
+  .brand-monolith--edge-left,
+  .brand-monolith--hero-edge-left,
+  .brand-monolith--hero-left,
+  .brand-monolith--section-left {
+    left: clamp(-200px, -18vw, -300px);
+    height: clamp(400px, 60vh, 700px);
+    opacity: 0.048;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-monolith--edge-right,
+  .brand-monolith--hero-edge-right,
+  .brand-monolith--hero-right,
+  .brand-monolith--section-right {
+    right: -240px;
+    height: 380px;
+    opacity: 0.035;
+  }
+
+  .brand-monolith--edge-left,
+  .brand-monolith--hero-edge-left,
+  .brand-monolith--hero-left,
+  .brand-monolith--section-left {
+    left: -240px;
+    height: 380px;
+    opacity: 0.035;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .brand-monolith {
+    transition: none !important;
+    transform: none !important;
+  }
+}

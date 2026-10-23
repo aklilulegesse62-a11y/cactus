@@ -1,0 +1,499 @@
+/* ==========================================================================
+   CACTUS ETHIOPIA — LUXURY CINEMATIC MOTION SYSTEM
+   Inspired by Boldcraft Studio motion language:
+   - Continuous scroll-driven movement
+   - Masked editorial typography reveals
+   - Subtle multi-plane depth & parallax
+   - Coordinated section transitions
+   - GPU-accelerated transforms & smooth easing: cubic-bezier(0.16, 1, 0.3, 1)
+   ========================================================================== */
+
+:root {
+  --ease-cinematic: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drift: cubic-bezier(0.33, 1, 0.68, 1);
+  --transition-cinematic: 1250ms var(--ease-cinematic);
+}
+
+/* --------------------------------------------------------------------------
+   1. EDITORIAL MASKED TYPOGRAPHY REVEALS
+   -------------------------------------------------------------------------- */
+.editorial-mask {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+}
+
+.editorial-reveal-line {
+  display: block;
+  transform: translate3d(0, 115%, 0);
+  opacity: 0;
+  transition: transform 0.65s var(--ease-cinematic), opacity 0.55s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+.editorial-reveal-line.is-revealed {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: transform 1.15s var(--ease-cinematic), opacity 0.95s var(--ease-cinematic);
+}
+
+/* Stagger delays for multiple lines when revealed */
+.editorial-reveal-line.is-revealed:nth-child(1) { transition-delay: 0.05s; }
+.editorial-reveal-line.is-revealed:nth-child(2) { transition-delay: 0.16s; }
+.editorial-reveal-line.is-revealed:nth-child(3) { transition-delay: 0.28s; }
+.editorial-reveal-line.is-revealed:nth-child(4) { transition-delay: 0.40s; }
+
+/* Inline editorial mask for sentences/phrases */
+.editorial-mask-inline {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+}
+
+.editorial-reveal-inline {
+  display: inline-block;
+  transform: translate3d(0, 115%, 0);
+  opacity: 0;
+  transition: transform 0.65s var(--ease-cinematic), opacity 0.55s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+.editorial-reveal-inline.is-revealed {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: transform 1.15s var(--ease-cinematic), opacity 0.95s var(--ease-cinematic);
+}
+
+/* --------------------------------------------------------------------------
+   2. SCROLL DRIFT & LAYER 4 DISPLAY TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+[data-scroll-drift],
+[data-parallax-layer="4"],
+.drift-line {
+  display: block;
+  will-change: transform;
+  transition: transform 0.12s linear;
+}
+
+/* --------------------------------------------------------------------------
+   3. LAYER 2: CARD MEDIA INNER WINDOW COUNTER-PARALLAX
+   -------------------------------------------------------------------------- */
+.parallax-frame,
+.project-thumb-box,
+.featured-thumb-wrap,
+.featured-thumb-box,
+.work-card-thumb,
+.partner-card-thumb,
+.why-card-thumb,
+.service-row-media,
+.case-media-box,
+.capability-card,
+.case-media-frame {
+  overflow: hidden !important;
+  position: relative;
+}
+
+.parallax-frame img,
+.parallax-frame video,
+.project-thumb-box img,
+.project-thumb-box video,
+.featured-thumb-img,
+.featured-brand-graphic,
+.work-card img,
+.partner-card img,
+.why-card img,
+.service-row-img,
+.case-media-img,
+.card-bg-media,
+.tile-thumb {
+  will-change: transform;
+  transform: scale(1.15) translate3d(0, var(--media-parallax-y, 0px), 0);
+  transition: transform 0.14s cubic-bezier(0.2, 0.9, 0.3, 1), filter 0.35s ease;
+  transform-origin: center center;
+}
+
+.project-card:hover .project-thumb-box img,
+.project-card:hover .project-thumb-box video,
+.featured-card:hover .featured-thumb-img,
+.work-card:hover img,
+.partner-card:hover img,
+.capability-card:hover .card-bg-media {
+  transform: scale(1.18) translate3d(0, var(--media-parallax-y, 0px), 0);
+}
+
+/* --------------------------------------------------------------------------
+   4. LAYER 1: GHOST NUMBERS, BRAND MONOLITHS & AMBIENT FACETS
+   -------------------------------------------------------------------------- */
+.section-ghost-num,
+.brand-monolith[data-parallax],
+.hero-facet,
+.hero-ambient-layer,
+.ambient-haze,
+.ambient-glow {
+  will-change: transform;
+  transform: translate3d(var(--ambient-drift-x, 0px), var(--ambient-parallax-y, 0px), 0);
+  transition: transform 0.18s cubic-bezier(0.2, 0.9, 0.3, 1);
+  transform-origin: center top;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. LAYER 5: SECTION HEADERS & FOREGROUND FLOATING ACCENTS
+   -------------------------------------------------------------------------- */
+[data-parallax-layer="5"],
+.section-header,
+.page-hero-title,
+.hero-container,
+.contact-intro {
+  will-change: transform;
+  transform: translate3d(0, var(--header-parallax-y, 0px), 0);
+  transition: transform 0.16s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   5b. SECTION FLOW & PROGRESSIVE ENTRANCES
+   -------------------------------------------------------------------------- */
+.flow-reveal {
+  opacity: 0;
+  transform: translate3d(0, 44px, 0);
+  transition: opacity 0.6s var(--ease-cinematic), transform 0.7s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+.flow-reveal.is-in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.1s var(--ease-cinematic), transform 1.35s var(--ease-cinematic);
+}
+
+/* Stagger for grid children */
+.flow-stagger > *:nth-child(1) { transition-delay: 0.05s; }
+.flow-stagger > *:nth-child(2) { transition-delay: 0.12s; }
+.flow-stagger > *:nth-child(3) { transition-delay: 0.19s; }
+.flow-stagger > *:nth-child(4) { transition-delay: 0.26s; }
+.flow-stagger > *:nth-child(5) { transition-delay: 0.33s; }
+.flow-stagger > *:nth-child(6) { transition-delay: 0.40s; }
+.flow-stagger > *:nth-child(7) { transition-delay: 0.47s; }
+.flow-stagger > *:nth-child(8) { transition-delay: 0.54s; }
+
+/* --------------------------------------------------------------------------
+   6. HERO SECTION CINEMATIC SCROLL DYNAMICS
+   -------------------------------------------------------------------------- */
+.hero-banner-inner {
+  will-change: transform, opacity;
+  transition: transform 0.1s linear, opacity 0.1s linear;
+}
+
+.video-container {
+  will-change: transform;
+  transition: transform 0.3s var(--ease-cinematic), box-shadow 0.4s ease;
+}
+
+/* --------------------------------------------------------------------------
+   7. CAPABILITIES & SERVICES MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+.service-editorial-row {
+  transition: transform 0.45s var(--ease-cinematic), background 0.4s ease, border-color 0.4s ease !important;
+}
+
+.service-editorial-row:hover {
+  transform: translateX(8px);
+}
+
+.service-editorial-row .service-row-media {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.service-editorial-row .service-row-img {
+  transition: transform 0.7s var(--ease-cinematic) !important;
+  will-change: transform;
+}
+
+.service-editorial-row:hover .service-row-img {
+  transform: scale(1.07) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. BUTTON & LINK MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+.cta,
+.services-statement-cta,
+.site-footer__talk-cta,
+.preloader__enter-btn,
+.site-footer__back-to-top {
+  transition: transform 0.35s var(--ease-cinematic), box-shadow 0.35s var(--ease-cinematic), background 0.3s ease, border-color 0.3s ease !important;
+}
+
+.cta:hover,
+.services-statement-cta:hover,
+.site-footer__talk-cta:hover {
+  transform: translateY(-2px);
+}
+
+.cta-arrow,
+.services-statement-cta svg,
+.site-footer__talk-cta svg,
+.btn-arrow,
+.site-footer__back-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s var(--ease-cinematic) !important;
+}
+
+.cta:hover .cta-arrow,
+.services-statement-cta:hover svg,
+.site-footer__talk-cta:hover svg,
+.preloader__enter-btn:hover .btn-arrow {
+  transform: translateX(6px) !important;
+}
+
+.site-footer__back-to-top:hover .site-footer__back-arrow {
+  transform: translateY(-4px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. CLIENT LOGO TILES MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+.client-tile {
+  transition: transform 0.4s var(--ease-cinematic), opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease !important;
+  will-change: transform;
+}
+
+.client-tile:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(26, 122, 90, 0.25) !important;
+}
+
+.client-tile img {
+  transition: transform 0.45s var(--ease-cinematic), filter 0.35s ease !important;
+}
+
+.client-tile:hover img {
+  transform: scale(1.06);
+}
+
+/* --------------------------------------------------------------------------
+   10. WHY CARDS MICRO-INTERACTIONS
+   -------------------------------------------------------------------------- */
+.why-card {
+  transition: transform 0.45s var(--ease-cinematic), border-color 0.35s ease, background 0.35s ease !important;
+  will-change: transform;
+}
+
+.why-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26, 122, 90, 0.25) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. STATS ITEMS INTERACTION
+   -------------------------------------------------------------------------- */
+.stat-item {
+  transition: transform 0.4s var(--ease-cinematic) !important;
+  will-change: transform;
+}
+
+.stat-item:hover {
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   11b. WORK & PARTNER CARDS ENTRANCE (Position Up + Side + Opacity)
+   -------------------------------------------------------------------------- */
+.featured-card,
+.project-card,
+.work-card,
+.partner-card,
+.card-motion-reveal {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 0.65s var(--ease-cinematic), transform 0.75s var(--ease-cinematic), box-shadow 0.4s ease;
+  will-change: transform, opacity;
+}
+
+/* Revealed state with level horizontal alignment and interactive 3D perspective depth */
+.featured-card.is-revealed,
+.project-card.is-revealed,
+.work-card.is-revealed,
+.partner-card.is-revealed,
+.card-motion-reveal.is-revealed {
+  opacity: 1;
+  transform: translate3d(var(--parallax-tilt-x, 0px), 0, 0) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+  transition: opacity 0.85s var(--ease-cinematic), transform 0.16s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* Hover state once revealed */
+.featured-card.is-revealed:hover,
+.project-card.is-revealed:hover,
+.work-card.is-revealed:hover,
+.partner-card.is-revealed:hover,
+.card-motion-reveal.is-revealed:hover {
+  transform: translate3d(var(--parallax-tilt-x, 0px), -6px, 0) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+  transition: transform 0.16s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.featured-card.is-revealed:hover .featured-thumb-img,
+.project-card.is-revealed:hover .project-thumb-box img,
+.project-card.is-revealed:hover .project-thumb-box video,
+.work-card:hover img,
+.partner-card:hover img {
+  transform: scale(1.18) translate3d(0, var(--media-parallax-y, 0px), 0);
+}
+
+/* Why cards, discipline cards & client tiles level row alignment */
+.why-card,
+.client-tile,
+.family-card,
+.discipline-card,
+.pillar-card,
+.metric-tile {
+  transform: translate3d(var(--parallax-tilt-x, 0px), 0, 0) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+  will-change: transform;
+  transition: transform 0.16s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+
+.why-card:hover,
+.client-tile:hover,
+.family-card:hover,
+.discipline-card:hover,
+.pillar-card:hover {
+  transform: translate3d(var(--parallax-tilt-x, 0px), -6px, 0) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+}
+
+/* --------------------------------------------------------------------------
+   UNIVERSAL TYPOGRAPHY REVEALS (Boldcraft Framer Studio Language)
+   -------------------------------------------------------------------------- */
+
+/* Major Titles, Headings, Hero Lines (H1, H2, Hero Titles) */
+.text-reveal-title {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0);
+  transition: opacity 0.65s var(--ease-cinematic), transform 0.75s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+span.text-reveal-title,
+a.text-reveal-title {
+  display: inline-block;
+}
+
+.text-reveal-title.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.15s var(--ease-cinematic), transform 1.35s var(--ease-cinematic);
+}
+
+/* Eyebrows, Badges, Category Tags, Small Numbers, Metadata */
+.text-reveal-eyebrow {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.55s var(--ease-cinematic), transform 0.65s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+span.text-reveal-eyebrow,
+a.text-reveal-eyebrow {
+  display: inline-block;
+}
+
+.text-reveal-eyebrow.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.05s var(--ease-cinematic), transform 1.2s var(--ease-cinematic);
+}
+
+/* Paragraphs, Leads, Body Copy, Quotes, Explanations */
+.text-reveal-body {
+  opacity: 0;
+  transform: translate3d(0, 36px, 0);
+  transition: opacity 0.6s var(--ease-cinematic), transform 0.7s var(--ease-cinematic);
+  will-change: transform, opacity;
+}
+
+span.text-reveal-body,
+a.text-reveal-body {
+  display: inline-block;
+}
+
+.text-reveal-body.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 1.1s var(--ease-cinematic), transform 1.3s var(--ease-cinematic);
+}
+
+/* Stagger delays for sequential paragraphs or list items when revealed */
+.text-stagger.is-revealed > *:nth-child(1),
+.text-stagger > *.is-revealed:nth-child(1) { transition-delay: 0.05s; }
+.text-stagger.is-revealed > *:nth-child(2),
+.text-stagger > *.is-revealed:nth-child(2) { transition-delay: 0.14s; }
+.text-stagger.is-revealed > *:nth-child(3),
+.text-stagger > *.is-revealed:nth-child(3) { transition-delay: 0.23s; }
+.text-stagger.is-revealed > *:nth-child(4),
+.text-stagger > *.is-revealed:nth-child(4) { transition-delay: 0.32s; }
+.text-stagger.is-revealed > *:nth-child(5),
+.text-stagger > *.is-revealed:nth-child(5) { transition-delay: 0.41s; }
+.text-stagger.is-revealed > *:nth-child(6),
+.text-stagger > *.is-revealed:nth-child(6) { transition-delay: 0.50s; }
+.text-stagger.is-revealed > *:nth-child(7),
+.text-stagger > *.is-revealed:nth-child(7) { transition-delay: 0.59s; }
+.text-stagger > *:nth-child(8) { transition-delay: 0.76s; }
+
+/* Service row title & text micro-interactions */
+.service-row-title {
+  transition: transform 0.4s var(--ease-cinematic), color 0.3s ease;
+}
+
+.service-editorial-row:hover .service-row-title {
+  transform: translateX(6px);
+  color: var(--green, #1a7a5a);
+}
+
+.service-row-num {
+  transition: transform 0.4s var(--ease-cinematic), opacity 0.3s ease;
+}
+
+.service-editorial-row:hover .service-row-num {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   12. MOBILE & ACCESSIBILITY SAFEGUARDS
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .service-editorial-row:hover,
+  .client-tile:hover,
+  .why-card:hover,
+  .stat-item:hover,
+  .cta:hover {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transform: none !important;
+  }
+  .editorial-reveal-line,
+  .editorial-reveal-inline,
+  .flow-reveal,
+  .text-reveal-title,
+  .text-reveal-eyebrow,
+  .text-reveal-body,
+  .featured-card,
+  .project-card,
+  .card-motion-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Cactus Ethiopia — Creative Agency</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/brand-architecture.css">
+  <link rel="stylesheet" href="assets/motion.css">
+
+  <style>
+    /* =========================================================
+       RESET
+    ========================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.68;
+      background: #f7f7f4;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    button,
+    a {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+    :root {
+      --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --green: #1a7a5a;
+      --green-bright: #2feaa0;
+      --cream: #f7f7f4;
+      --black: #101214;
+      --white: #ffffff;
+      --transition: 950ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =========================================================
+       PRELOADER / ENTRANCE SCREEN (Editorial Cream Theme)
+    ========================================================= */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100svh;
+      z-index: 9999;
+      background: radial-gradient(circle at center, #ffffff 0%, #f7f7f4 60%, #ecece7 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: transform 0.85s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.5s ease 0.3s, visibility 0.85s;
+      will-change: transform, opacity;
+      color: var(--black);
+    }
+
+    .preloader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(26, 122, 90, 0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .preloader.is-loaded {
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 32px 24px;
+      max-width: 780px;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 1. Welcome Line */
+    .preloader__welcome {
+      font-family: var(--font-body);
+      font-size: clamp(12px, 1.2vw, 14px);
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: preloaderFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+
+    /* 2. Logo Reveal */
+    .preloader__logo-reveal {
+      position: relative;
+      width: min(88vw, 460px);
+      max-height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: preloaderZoomReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+    }
+
+    .preloader__logo-reveal::before {
+      content: "";
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(26, 122, 90, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(18px);
+      pointer-events: none;
+    }
+
+    .preloader__logo-img {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+      object-fit: contain;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 10px 25px rgba(16, 18, 20, 0.07));
+    }
+
+    /* 3. Motto Tagline */
+    .preloader__tagline {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.4vw, 40px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #101214;
+      max-width: 660px;
+      margin: 0 auto 36px;
+      opacity: 0;
+      animation: preloaderFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.05s forwards;
+    }
+
+    /* 4. Button: Enter Site */
+    .preloader__enter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 42px;
+      background: var(--green);
+      border: 1.5px solid var(--green);
+      border-radius: 999px;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(26, 122, 90, 0.28), 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      animation: preloaderBtnReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+    }
+
+    .preloader__enter-btn:hover {
+      background: #146147;
+      border-color: #146147;
+      box-shadow: 0 14px 36px rgba(26, 122, 90, 0.38), 0 0 20px rgba(47, 234, 160, 0.3);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+
+    .preloader__enter-btn .btn-arrow {
+      display: inline-block;
+      font-size: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .preloader__enter-btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .preloader__skip {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      appearance: none;
+      border: 1px solid rgba(16, 18, 20, 0.12);
+      background: rgba(255, 255, 255, 0.6);
+      color: rgba(16, 18, 20, 0.65);
+      padding: 7px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background .25s ease, border-color .25s ease, color .25s ease;
+      z-index: 10;
+    }
+
+    .preloader__skip:hover {
+      background: #ffffff;
+      border-color: rgba(16, 18, 20, 0.3);
+      color: #101214;
+    }
+
+    @keyframes preloaderFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes preloaderZoomReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes preloaderBtnReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(14px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* =========================================================
+       MAIN SLIDER
+    ========================================================= */
+    .slider {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slides {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 30% 70%;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(28px) scale(0.99);
+      transition:
+        opacity var(--transition),
+        transform var(--transition),
+        visibility var(--transition);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      z-index: 2;
+    }
+
+    /* =========================================================
+       LEFT PANEL
+    ========================================================= */
+    .slide-content {
+      position: relative;
+      height: 100%;
+      padding: 45px clamp(24px, 3.2vw, 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      transition: background 600ms ease;
+    }
+
+    /* Slide 01 — Harar Beer brand crimson red */
+    .slide-harar .slide-content {
+      background: #961219;
+      color: var(--white);
+    }
+
+    .slide-harar .eyebrow {
+      color: #ffcb47;
+      opacity: 1;
+    }
+
+    .slide-harar .giant-number {
+      color: var(--white);
+      opacity: 0.08;
+    }
+
+    .slide-harar .slide-description {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .slide-harar .cta {
+      color: var(--white);
+    }
+
+    .slide-harar .cta:hover .cta-arrow {
+      background: #ffffff;
+      color: #961219;
+    }
+
+    .slide-harar .cta:hover .cta-arrow span {
+      filter: none;
+      color: #961219;
+    }
+
+    /* Slides 02, 03, 04 */
+    .slide-blue .slide-content {
+      background: #082038;
+      color: var(--white);
+    }
+
+    .slide-dark .slide-content {
+      background: #031c40;
+      color: var(--white);
+    }
+
+    .slide-green .slide-content {
+      background: #0d211c;
+      color: var(--white);
+    }
+
+    /* Slide 05 — Bank of Abyssinia brand warm gold */
+    .slide-abyssinia .slide-content {
+      background: #f0ab1c;
+      color: #101214;
+    }
+
+    .slide-abyssinia .eyebrow {
+      color: #332204;
+      font-weight: 700;
+      opacity: 0.9;
+    }
+
+    .slide-abyssinia .headline {
+      color: #101214;
+    }
+
+    .slide-abyssinia .giant-number {
+      color: #101214;
+      opacity: 0.08;
+    }
+
+    .slide-abyssinia .slide-description {
+      color: rgba(16, 18, 20, 0.88);
+      font-weight: 500;
+    }
+
+    .slide-abyssinia .award-pill-note {
+      color: #101214;
+      background: rgba(16, 18, 20, 0.08);
+      border-color: rgba(16, 18, 20, 0.22);
+    }
+
+    .slide-abyssinia .cta {
+      color: #101214;
+    }
+
+    .slide-abyssinia .cta .cta-arrow {
+      border-color: #101214;
+      color: #101214;
+    }
+
+    .slide-abyssinia .cta:hover .cta-arrow {
+      background: #101214;
+      color: #f0ab1c;
+    }
+
+    .slide-abyssinia .cta:hover .cta-arrow span {
+      filter: none;
+      color: #f0ab1c;
+    }
+
+    /* Fallback slide styles */
+    .slide-light .slide-content {
+      background: var(--cream);
+      color: var(--black);
+    }
+
+    .slide-black .slide-content {
+      background: #101514;
+      color: var(--white);
+    }
+
+    .award-pill-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 24px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 14px;
+      border-radius: 100px;
+      width: fit-content;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    .header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 35px 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 30;
+      color: var(--white);
+      transition: color 500ms ease;
+    }
+
+    .header.header-dark {
+      color: var(--white);
+    }
+
+    .logo {
+      width: 160px;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+      transition: filter 500ms ease, opacity 500ms ease;
+    }
+
+    .header.header-dark .logo {
+      filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+    }
+
+    .explore {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+    }
+
+    /* =========================================================
+       MENU BUTTON
+    ========================================================= */
+    .menu-button {
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      color: inherit;
+      padding: 2px 0;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 300ms ease, opacity 300ms ease;
+      transform-origin: center;
+    }
+
+    .menu-button.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-button.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-button.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       GIANT BACKGROUND NUMBER
+    ========================================================= */
+    .giant-number {
+      position: absolute;
+      left: -20px;
+      bottom: -60px;
+      font-size: clamp(180px, 20vw, 360px);
+      font-weight: 800;
+      line-height: 0.8;
+      opacity: 0.045;
+      pointer-events: none;
+      user-select: none;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* =========================================================
+       TEXT
+    ========================================================= */
+    .eyebrow {
+      position: relative;
+      z-index: 2;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      opacity: 0.85;
+    }
+
+    .headline {
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 3.5vw, 4.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      margin-bottom: 22px;
+      text-wrap: balance;
+      text-wrap: pretty;
+    }
+
+    .slide-description {
+      position: relative;
+      z-index: 2;
+      max-width: 100%;
+      font-size: clamp(17px, 1.35vw, 19.5px);
+      line-height: 1.7;
+      opacity: 0.82;
+      margin-bottom: 28px;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+    .cta {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      width: fit-content;
+      color: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .cta-arrow {
+      width: 42px;
+      height: 42px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 300ms ease, background 300ms ease, color 300ms ease;
+    }
+
+    .cta:hover .cta-arrow {
+      transform: translateX(6px);
+      background: currentColor;
+    }
+
+    .cta:hover .cta-arrow span {
+      filter: invert(1);
+    }
+
+    /* =========================================================
+       PROGRESS
+    ========================================================= */
+    .progress {
+      position: absolute;
+      bottom: 45px;
+      left: clamp(24px, 3.2vw, 48px);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: var(--white);
+      transition: color 500ms ease;
+    }
+
+    .progress.progress-dark {
+      color: var(--white);
+    }
+
+    .progress-line {
+      width: 80px;
+      height: 2px;
+      background: currentColor;
+      opacity: 0.25;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: currentColor;
+      opacity: 1;
+    }
+
+    .progress-fill.running {
+      animation: progFill 5000ms linear forwards;
+    }
+
+    @keyframes progFill {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    /* =========================================================
+       RIGHT IMAGE
+    ========================================================= */
+    .slide-image {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slide-image img,
+    .slide-image video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.08);
+      transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .slide.active .slide-image img,
+    .slide.active .slide-image video {
+      transform: scale(1);
+    }
+
+    /* Image overlay */
+    .slide-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.08);
+      pointer-events: none;
+    }
+
+    /* =========================================================
+       RIGHT SIDE NAVIGATION
+    ========================================================= */
+    .side-navigation {
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      color: var(--white);
+      pointer-events: none;
+    }
+
+    .side-navigation span {
+      writing-mode: vertical-rl;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .side-line {
+      width: 1px;
+      height: 85px;
+      background: currentColor;
+      opacity: 0.7;
+    }
+
+    /* =========================================================
+       SLIDE 1..5 TWEAKS
+    ========================================================= */
+    .slide-01 .slide-content { justify-content: center; }
+    .slide-01 .headline { max-width: 100%; }
+    .slide-02 .headline { max-width: 100%; }
+    .slide-03 .headline { max-width: 100%; }
+    .slide-04 .headline { max-width: 100%; }
+    .slide-05 .headline { max-width: 100%; }
+
+    .slide-03, .slide-05 { grid-template-columns: 30% 70%; }
+    .slide-abyssinia .slide-content { z-index: 5; }
+
+    /* =========================================================
+       DOT NAVIGATION
+    ========================================================= */
+    .dots {
+      position: absolute;
+      bottom: 35px;
+      right: 45px;
+      z-index: 40;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      opacity: 0.4;
+      transition: 300ms ease;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      opacity: 1;
+      transform: scale(1.5);
+      background: var(--green-bright);
+    }
+
+    /* =========================================================
+       NAV SHEET (Slide-out menu)
+    ========================================================= */
+    .navsheet {
+      position: fixed; inset: 0;
+      z-index: 90;
+      visibility: hidden;
+      transition: visibility 0s linear .46s;
+    }
+
+    .navsheet.is-open {
+      visibility: visible;
+      transition: visibility 0s linear 0s;
+    }
+
+    .navsheet__scrim {
+      position: absolute; inset: 0;
+      background: rgba(5,17,24,0.50);
+      opacity: 0;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: opacity .32s ease, backdrop-filter .32s ease, -webkit-backdrop-filter .32s ease;
+    }
+
+    .navsheet.is-open .navsheet__scrim {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navsheet__panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(100%, 480px);
+      display: flex; flex-direction: column;
+      padding: 120px clamp(32px,6vw,56px) 48px;
+      padding-bottom: max(48px, env(safe-area-inset-bottom));
+      background: radial-gradient(circle at 85% 12%, rgba(47, 234, 160, 0.12) 0%, transparent 55%),
+                  linear-gradient(165deg, #12211C 0%, #0d1a16 45%, #070f0c 100%);
+      backdrop-filter: blur(30px) saturate(140%);
+      -webkit-backdrop-filter: blur(30px) saturate(140%);
+      border-left: 1px solid rgba(47, 234, 160, 0.14);
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.65), inset 1px 0 0 rgba(47, 234, 160, 0.06);
+      color: #fff;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .44s cubic-bezier(.7, 0, .84, 0);
+    }
+
+    .navsheet.is-open .navsheet__panel {
+      transform: translateX(0);
+      transition: transform .68s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .navsheet__list { list-style: none; }
+    .navsheet__list li { border-top: 1px solid rgba(255,255,255,0.08); }
+    .navsheet__list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .navsheet__link {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: clamp(18px,2.8vh,26px) 2px;
+      text-decoration: none;
+      color: #fff;
+      font-size: clamp(1.8rem,5vw,2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease, color .25s ease;
+    }
+
+    .navsheet.is-open .navsheet__link {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1), color .25s ease;
+      transition-delay: calc(.18s + var(--i) * .07s), calc(.18s + var(--i) * .07s), 0s;
+    }
+
+    .navsheet__link svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0; opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .navsheet__link:hover, .navsheet__link:focus-visible { color: #2feaa0; }
+    .navsheet__link:hover svg, .navsheet__link:focus-visible svg { opacity: 1; transform: translateX(0); }
+
+    .navsheet__foot {
+      margin-top: auto;
+      padding-top: clamp(32px,6vh,56px);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .navsheet.is-open .navsheet__foot {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+      transition-delay: .44s;
+    }
+
+    .navsheet__contact { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .navsheet__contact a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color .2s ease; }
+    .navsheet__contact a:hover { color: #fff; }
+
+    /* =========================================================
+       ANIMATIONS
+    ========================================================= */
+    .slide-content > *:not(.giant-number) {
+      opacity: 0;
+      transform: translateY(46px);
+      transition:
+        opacity 1150ms cubic-bezier(0.19, 1, 0.22, 1) 220ms,
+        transform 1350ms cubic-bezier(0.19, 1, 0.22, 1) 220ms;
+    }
+
+    .slide.active .slide-content > *:not(.giant-number) {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide.active .eyebrow { transition-delay: 260ms; }
+    .slide.active .headline { transition-delay: 400ms; }
+    .slide.active .slide-description { transition-delay: 560ms; }
+    .slide.active .award-pill-note { transition-delay: 680ms; }
+    .slide.active .cta { transition-delay: 780ms; }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .slider { height: auto; min-height: 100vh; }
+      .slides { height: auto; }
+
+      .slide {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+      }
+
+      .slide.active { display: flex; }
+
+      .slide-content {
+        min-height: 55vh;
+        padding: 130px 30px 80px;
+        order: 1;
+      }
+
+      .slide-image {
+        height: 45vh;
+        min-height: 350px;
+        order: 2;
+      }
+
+      .header { padding: 25px 25px; }
+      .logo { width: 130px; }
+      .headline { font-family: var(--font-display); font-size: clamp(1.75rem, 5vw, 3rem); line-height: 1.08; }
+      .giant-number { font-size: 300px; }
+      .side-navigation { display: none; }
+      .progress { left: 30px; bottom: 25px; }
+      .dots { right: 25px; bottom: 25px; }
+      .final-tagline { right: 30px; bottom: 25px; font-size: 28px; }
+    }
+
+    @media (max-width: 500px) {
+      .slide-content { padding: 120px 25px 70px; }
+      .headline { font-size: clamp(1.75rem, 7vw, 2.4rem); line-height: 1.08; }
+      .slide-description { font-size: 16.5px; line-height: 1.62; }
+      .slide-image { min-height: 300px; }
+      .giant-number { font-size: 220px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       PRELOADER / ENTRANCE SCREEN
+  ====================================================== -->
+  <div class="preloader" id="preloader" role="dialog" aria-modal="true" aria-label="Welcome to Cactus Ethiopia">
+
+    <button class="preloader__skip" id="preloaderSkip" type="button" aria-label="Skip introduction">Skip &rarr;</button>
+    <div class="preloader__inner">
+      <div class="preloader__welcome">Welcome to Cactus Ethiopia</div>
+
+      <div class="preloader__logo-reveal">
+        <img class="preloader__logo-img" src="cactus-logo-animation.gif" alt="Cactus Ethiopia Logo">
+      </div>
+
+      <p class="preloader__tagline">&ldquo;Ideas rooted in culture. Built to move brands.&rdquo;</p>
+
+      <button class="preloader__enter-btn" id="enterSiteBtn" type="button" aria-label="Enter Cactus Ethiopia website">
+        <span>Enter Site</span>
+        <span class="btn-arrow">&rarr;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       MAIN SLIDER
+  ====================================================== -->
+  <main class="slider" id="mainSlider">
+
+    <!-- =====================================================
+         GLOBAL HEADER
+    ====================================================== -->
+    <header class="header header-dark" id="siteHeader">
+      <a href="#">
+        <img src="cactus-logo.png" class="logo" alt="Cactus Ethiopia" />
+      </a>
+
+      <div style="display:flex; align-items:center; gap:22px;">
+        <span class="explore">Explore</span>
+        <button class="menu-button" id="menuBtn" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =====================================================
+         SLIDES
+    ====================================================== -->
+    <div class="slides">
+
+      <!-- ===================================================
+           SLIDE 01 — HARAR BEER
+      ==================================================== -->
+      <section class="slide slide-01 slide-harar active" data-slide="1">
+        <div class="slide-content">
+          <!-- Architectural Monolith Anchor in Slide Left Panel -->
+          <div class="brand-monolith brand-monolith--slide-panel" aria-hidden="true" style="opacity: 0.065; color: #ffcb47;">
+            <img src="assets/cactus-mark.svg" alt="" />
+          </div>
+          <div class="giant-number">01</div>
+          <div class="eyebrow">Harar Beer</div>
+          <h1 class="headline">
+            Pay<br>with&nbsp;Laughter.
+          </h1>
+          <p class="slide-description">
+            The world’s first campaign that turned laughter into currency.
+          </p>
+          <a href="case-study.html?id=harar-beer" class="cta">
+            View More
+            <span class="cta-arrow"><span>→</span></span>
+          </a>
+        </div>
+        <div class="slide-image">
+          <img src="hero images/Harar Beer — Pay with Laughter.png" alt="Harar Beer — Pay with Laughter" />
+        </div>
+      </section>
+
+      <!-- ===================================================
+           SLIDE 02 — VASELINE
+      ==================================================== -->
+      <section class="slide slide-02 slide-blue" data-slide="2">
+        <div class="slide-content">
+          <!-- Architectural Monolith Anchor in Slide Left Panel -->
+          <div class="brand-monolith brand-monolith--slide-panel" aria-hidden="true" style="opacity: 0.06; color: #ffffff;">
+            <img src="assets/cactus-mark.svg" alt="" />
+          </div>
+          <div class="giant-number">02</div>
+          <div class="eyebrow">Vaseline</div>
+          <h2 class="headline">
+            See the Moisture,<br>Feel the&nbsp;Beauty.
+          </h2>
+          <p class="slide-description">
+            A beauty campaign built around visible care and emotional confidence.
+          </p>
+          <a href="case-study.html?id=vaseline-et" class="cta">
+            View More
+            <span class="cta-arrow"><span>→</span></span>
+          </a>
+        </div>
+        <div class="slide-image">
+          <video src="hero images/Vaseline — See the Moisture, Feel the Beauty.mp4" autoplay muted loop playsinline preload="auto"></video>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           SLIDE 03 — BANK OF ABYSSINIA
+      ==================================================== -->
+      <section class="slide slide-03 slide-abyssinia" data-slide="3">
+        <div class="slide-content">
+          <!-- Architectural Monolith Anchor in Slide Left Panel -->
+          <div class="brand-monolith brand-monolith--slide-panel" aria-hidden="true" style="opacity: 0.08; color: #101214;">
+            <img src="assets/cactus-mark.svg" alt="" />
+          </div>
+          <div class="giant-number">03</div>
+          <div class="eyebrow">Bank of Abyssinia</div>
+          <h2 class="headline">
+            Award-Winning<br>Creative&nbsp;Project.
+          </h2>
+          <p class="slide-description">
+            A project that turned brand thinking into recognized creative impact.
+          </p>
+          <div class="award-pill-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>Award details to be added later</span>
+          </div>
+          <a href="case-study.html?id=boa-bank-of-abyssinia" class="cta">
+            View More
+            <span class="cta-arrow"><span>→</span></span>
+          </a>
+        </div>
+        <div class="slide-image">
+          <img src="hero images/Bank of Abyssinia — Award-Winning Project.png" alt="Bank of Abyssinia — Award-Winning Project" />
+        </div>
+      </section>
+
+      <!-- ===================================================
+           SLIDE 04 — ADDIS INTERNATIONAL CONFERENCE CENTER (AICC)
+      ==================================================== -->
+      <section class="slide slide-04 slide-green" data-slide="4">
+        <div class="slide-content">
+          <!-- Architectural Monolith Anchor in Slide Left Panel -->
+          <div class="brand-monolith brand-monolith--slide-panel" aria-hidden="true" style="opacity: 0.08; color: #2feaa0;">
+            <img src="assets/cactus-mark.svg" alt="" />
+          </div>
+          <div class="giant-number">04</div>
+          <div class="eyebrow">Addis International Conference Center (AICC)</div>
+          <h2 class="headline">
+            National Ambition<br>at&nbsp;Scale.
+          </h2>
+          <p class="slide-description">
+            A brand identity system designed to represent ambition at national scale.
+          </p>
+          <a href="case-study.html?id=aicc" class="cta">
+            View More
+            <span class="cta-arrow"><span>→</span></span>
+          </a>
+        </div>
+        <div class="slide-image">
+          <video src="hero images/Addis International Conference Center (AICC).mp4" autoplay muted loop playsinline preload="auto"></video>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           SLIDE 05 — PEPSI
+      ==================================================== -->
+      <section class="slide slide-05 slide-dark" data-slide="5">
+        <div class="slide-content">
+          <!-- Architectural Monolith Anchor in Slide Left Panel -->
+          <div class="brand-monolith brand-monolith--slide-panel" aria-hidden="true" style="opacity: 0.06; color: #ffffff;">
+            <img src="assets/cactus-mark.svg" alt="" />
+          </div>
+          <div class="giant-number">05</div>
+          <div class="eyebrow">Pepsi</div>
+          <h2 class="headline">
+            Thirsty<br>for&nbsp;More.
+          </h2>
+          <p class="slide-description">
+            A youth-driven brand platform that took a viral twist locally.
+          </p>
+          <a href="case-study.html?id=pepsi-et" class="cta">
+            View More
+            <span class="cta-arrow"><span>→</span></span>
+          </a>
+        </div>
+        <div class="slide-image">
+          <video src="hero images/Pepsi — Thirsty for More.mp4" autoplay muted loop playsinline preload="auto"></video>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- =====================================================
+         SIDE NAVIGATION
+    ====================================================== -->
+    <div class="side-navigation">
+      <span>Scroll to discover</span>
+      <div class="side-line"></div>
+    </div>
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+    <div class="progress progress-dark">
+      <span id="currentSlide">01</span>
+      <span>/</span>
+      <span>05</span>
+      <div class="progress-line">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         DOTS
+    ====================================================== -->
+    <div class="dots">
+      <button class="dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+      <button class="dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+      <button class="dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+      <button class="dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+      <button class="dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
+    </div>
+
+  </main>
+
+  <!-- =====================================================
+       NAV SHEET
+  ====================================================== -->
+  <div class="navsheet" id="navSheet" inert>
+    <div class="navsheet__scrim" id="navCloseScrim"></div>
+    <nav class="navsheet__panel" aria-label="Menu">
+      <ul class="navsheet__list">
+        <li style="--i:0"><a class="navsheet__link active" href="index.html"><span>Home Page</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:1"><a class="navsheet__link" href="about.html"><span>About Us</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:2"><a class="navsheet__link" href="work.html"><span>Our Work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:3"><a class="navsheet__link" href="services.html"><span>Our Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:4"><a class="navsheet__link" href="partners.html"><span>Our Partners</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:5"><a class="navsheet__link" href="contact.html"><span>Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+      <div class="navsheet__foot">
+        <div class="navsheet__contact">
+          Cactus Plaza - 2nd Floor, Bole Road<br>
+          Addis Ababa, Ethiopia<br>
+          <a href="tel:+251115544901">+251 11 554 4901</a> &middot; <a href="mailto:info@cactusethiopia.com">info@cactusethiopia.com</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+  <script>
+    const slides       = document.querySelectorAll(".slide");
+    const dots         = document.querySelectorAll(".dot");
+    const currentSlide = document.getElementById("currentSlide");
+    const siteHeader   = document.getElementById("siteHeader");
+    const progFill     = document.getElementById("progressFill");
+    const sliderEl     = document.getElementById("mainSlider");
+
+    let current = 0;
+    let isAnimating = false;
+    let autoTimer = null;
+    let isHoverPaused = false;
+    const HOLD = 5000; /* ms per slide */
+
+    /* =====================================================
+       PROGRESS FILL ANIMATION
+    ====================================================== */
+    function startProgress() {
+      if (!progFill) return;
+      progFill.classList.remove("running");
+      void progFill.offsetWidth; /* Reflow */
+      progFill.classList.add("running");
+    }
+
+    /* =====================================================
+       GO TO SLIDE
+    ====================================================== */
+    function goToSlide(index) {
+      if (index < 0 || index >= slides.length) return;
+      if (index === current || isAnimating) return;
+
+      isAnimating = true;
+
+      // Pause outgoing video
+      const prevVideo = slides[current].querySelector("video");
+      if (prevVideo) {
+        prevVideo.pause();
+      }
+
+      slides[current].classList.remove("active");
+      dots[current].classList.remove("active");
+
+      current = index;
+
+      slides[current].classList.add("active");
+      dots[current].classList.add("active");
+
+      // Play incoming video
+      const currVideo = slides[current].querySelector("video");
+      if (currVideo) {
+        currVideo.currentTime = 0;
+        currVideo.play().catch(() => {});
+      }
+
+      currentSlide.textContent = String(current + 1).padStart(2, "0");
+
+      /* Header & Progress remain crisp white across all 5 rich-color slides */
+      if (siteHeader) {
+        siteHeader.classList.add("header-dark");
+      }
+      const progressEl = document.querySelector(".progress");
+      if (progressEl) {
+        progressEl.classList.add("progress-dark");
+      }
+
+      resetAutoPlay();
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 900);
+    }
+
+    function nextSlide() {
+      let next = (current + 1) % slides.length;
+      goToSlide(next);
+    }
+
+    function previousSlide() {
+      let prev = (current - 1 + slides.length) % slides.length;
+      goToSlide(prev);
+    }
+
+    /* =====================================================
+       AUTOPLAY (5 seconds per slide)
+    ====================================================== */
+    function resetAutoPlay() {
+      clearInterval(autoTimer);
+      if (!isHoverPaused) {
+        startProgress();
+        autoTimer = setInterval(nextSlide, HOLD);
+      }
+    }
+
+    if (sliderEl) {
+      sliderEl.addEventListener("mouseenter", function () {
+        isHoverPaused = true;
+        clearInterval(autoTimer);
+        if (progFill) progFill.style.animationPlayState = "paused";
+      });
+      sliderEl.addEventListener("mouseleave", function () {
+        isHoverPaused = false;
+        if (progFill) progFill.style.animationPlayState = "running";
+        resetAutoPlay();
+      });
+    }
+
+    /* =====================================================
+       MOUSE WHEEL
+    ====================================================== */
+    let wheelLocked = false;
+    window.addEventListener(
+      "wheel",
+      function(event) {
+        if (wheelLocked) return;
+        wheelLocked = true;
+
+        if (event.deltaY > 0) {
+          nextSlide();
+        } else {
+          previousSlide();
+        }
+
+        setTimeout(() => {
+          wheelLocked = false;
+        }, 900);
+      },
+      { passive: true }
+    );
+
+    /* =====================================================
+       KEYBOARD
+    ====================================================== */
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "ArrowDown" || event.key === "ArrowRight" || event.key === " ") {
+        nextSlide();
+      }
+      if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+        previousSlide();
+      }
+    });
+
+    /* =====================================================
+       TOUCH / SWIPE
+    ====================================================== */
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    window.addEventListener(
+      "touchstart",
+      function(event) {
+        touchStartY = event.touches[0].clientY;
+      },
+      { passive: true }
+    );
+
+    window.addEventListener(
+      "touchend",
+      function(event) {
+        touchEndY = event.changedTouches[0].clientY;
+        const diff = touchStartY - touchEndY;
+        if (Math.abs(diff) < 50) return;
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          previousSlide();
+        }
+      },
+      { passive: true }
+    );
+
+    /* =====================================================
+       MENU CONTROLLER
+    ====================================================== */
+    const menuBtn = document.getElementById("menuBtn");
+    const navSheet = document.getElementById("navSheet");
+    const navClose = document.getElementById("navCloseScrim");
+    let isMenuOpen = false;
+
+    function setMenu(open) {
+      isMenuOpen = open;
+      if (navSheet) navSheet.classList.toggle("is-open", isMenuOpen);
+      if (menuBtn) menuBtn.classList.toggle("is-active", isMenuOpen);
+      if (isMenuOpen) {
+        navSheet.removeAttribute("inert");
+        clearInterval(autoTimer);
+      } else {
+        navSheet.setAttribute("inert", "");
+        resetAutoPlay();
+      }
+    }
+
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    }
+    if (navClose) {
+      navClose.addEventListener("click", () => setMenu(false));
+    }
+    if (navSheet) {
+      navSheet.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+      });
+    }
+    window.addEventListener("keydown", (e) => {
+      if ((e.key === "Escape" || e.key === "Esc") && isMenuOpen) setMenu(false);
+    });
+
+    /* =====================================================
+       PRELOADER CONTROLLER (Enter Site Interaction)
+    ====================================================== */
+    (function () {
+      const preloader = document.getElementById("preloader");
+      const enterBtn  = document.getElementById("enterSiteBtn");
+      const skipBtn   = document.getElementById("preloaderSkip");
+      if (!preloader) return;
+
+      let finished = false;
+
+      function finish() {
+        if (finished) return;
+        finished = true;
+        preloader.classList.add("is-loaded");
+        if (siteHeader) {
+          siteHeader.classList.add("header-dark");
+        }
+        const progressEl = document.querySelector(".progress");
+        if (progressEl) {
+          progressEl.classList.add("progress-dark");
+        }
+        if (typeof resetAutoPlay === "function") {
+          resetAutoPlay();
+        }
+      }
+
+      if (enterBtn) enterBtn.addEventListener("click", finish);
+      if (skipBtn)  skipBtn.addEventListener("click", finish);
+
+      /* Keyboard navigation: Enter or Space triggers entry */
+      window.addEventListener("keydown", (e) => {
+        if (!finished && (e.key === "Enter" || e.key === " ")) {
+          finish();
+        }
+      });
+    })();
+  </script>
+
+  <!-- Brand Architecture Parallax Engine & Universal Motion Engine -->
+  <script src="assets/brand-architecture.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advertising &amp; Branding | Cactus Ethiopia</title>
+  <meta name="description" content="We build brands and campaign platforms that know how to enter culture — from full 360° platforms to sharp tactical bursts. Cactus Ethiopia." />
+  <link rel="icon" type="image/png" href="cactus-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/brand-architecture.css" />
+  <link rel="stylesheet" href="assets/motion.css" />
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS & RESET
+    ========================================================= */
+    :root {
+      --bg-cream: #FBF9F4;
+      --bg-surface: #FFFFFF;
+      --text-dark: #151A17;
+      --text-muted: #5A625C;
+      --text-light: #8E958F;
+      --border-soft: rgba(21, 26, 23, 0.08);
+      --border-dark: rgba(244, 241, 232, 0.1);
+      --obsidian: #151A17;
+      --off-white: #F4F1E8;
+      --green: #24523F;
+      --green-bright: #2feaa0;
+
+      /* Active Discipline Accent */
+      --disc-accent: #24523F;
+      --disc-accent-light: rgba(36, 82, 63, 0.1);
+
+      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-display: "Playfair Display", Georgia, serif;
+      --transition: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================================
+    /* =========================================================
+       HEADER (Sticky, starts transparent, frosted on scroll)
+    ========================================================= */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 26px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: transparent;
+      color: #ffffff;
+      transition: background 300ms ease, color 300ms ease, box-shadow 300ms ease, padding 300ms ease;
+    }
+
+    .header.is-scrolled {
+      background: rgba(247, 247, 244, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--text-dark);
+      border-bottom: 1px solid var(--border-soft);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      padding: 18px 5vw;
+    }
+
+    .header.is-scrolled .logo {
+      filter: none;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 155px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1);
+      transition: filter 300ms ease;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .explore {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu-button {
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      color: inherit;
+      padding: 2px 0;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 300ms ease, opacity 300ms ease;
+      transform-origin: center;
+    }
+
+    .menu-button.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-button.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-button.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       SECTION 1: CINEMATIC PHOTOGRAPHIC HERO (48vh, Hard Cut)
+    ========================================================= */
+    .discipline-hero {
+      position: relative;
+      width: 100%;
+      height: clamp(480px, 50vh, 540px);
+      min-height: 460px;
+      background: #0d1210;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5vw 48px;
+      overflow: hidden;
+      border-bottom: none;
+    }
+
+    .hero-bg-media {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .hero-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      opacity: 0.72;
+      filter: contrast(1.08) brightness(0.88);
+      transform: scale(1.01);
+      transition: transform 1.2s ease, opacity 800ms ease;
+    }
+
+    .hero-photo-tint {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10, 14, 12, 0.58) 0%,
+        rgba(10, 14, 12, 0.24) 45%,
+        rgba(10, 14, 12, 0.78) 100%
+      );
+    }
+
+    .hero-content-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-bottom-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .hero-eyebrow-col, .hero-title-col, .hero-statement-col {
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-display-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 5.5vw, 76px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      line-height: 1.05;
+      color: #ffffff;
+      margin: 0 auto;
+      text-align: center;
+      text-transform: uppercase;
+      transition: opacity 250ms ease, transform 250ms ease;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 2px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .hero-active-disc-name {
+      color: var(--green-bright);
+    }
+
+    .hero-statement {
+      font-family: var(--font-sans);
+      font-size: clamp(15px, 1.35vw, 20px);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      line-height: 1.3;
+      margin: 0 auto;
+      text-align: center;
+      transition: opacity 250ms ease;
+    }
+
+    @media (max-width: 860px) {
+      .discipline-hero {
+        height: auto;
+        min-height: 480px;
+        padding: 130px 5vw 44px;
+      }
+      .hero-bottom-grid {
+        gap: 12px;
+      }
+    }
+
+    /* =========================================================
+       SECTION 2: EDITORIAL MULTIDISCIPLINARY SPREAD
+       (Hard Clean Architectural Cut from Hero)
+    ========================================================= */
+    .section-manifesto {
+      padding: clamp(72px, 8vw, 110px) 5vw clamp(60px, 7vw, 90px);
+      background: #FAF9F6;
+      border-bottom: 1px solid var(--border-soft);
+      scroll-margin-top: 80px;
+    }
+
+    .manifesto-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 36px;
+    }
+
+    .manifesto-headline-wrap {
+      width: 100%;
+      text-align: center;
+    }
+
+    .editorial-statement {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 54px);
+      font-weight: 400;
+      line-height: 1.22;
+      letter-spacing: -0.015em;
+      color: #151A17;
+      margin: 0 auto;
+      text-align: center;
+      text-wrap: balance;
+      max-width: 920px;
+      transition: opacity 250ms ease;
+    }
+
+    .statement-accent {
+      color: var(--green);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .editorial-body {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .editorial-lead {
+      font-size: clamp(18px, 1.45vw, 21.5px);
+      font-weight: 500;
+      line-height: 1.72;
+      color: #151A17;
+      text-align: center;
+      transition: opacity 250ms ease;
+    }
+
+    .editorial-body p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #5A625C;
+      text-align: center;
+    }
+
+    /* Discipline Exploration Switcher Bar */
+    .switcher-bar-wrap {
+      max-width: 1400px;
+      margin: clamp(48px, 6vw, 72px) auto 0;
+      padding-top: 36px;
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    .switcher-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .switcher-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .switcher-hint {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .discipline-switcher-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 8px;
+      scrollbar-width: none;
+    }
+
+    .discipline-switcher-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .switcher-pill {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(21, 26, 23, 0.12);
+      color: #5A625C;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .switcher-pill:hover {
+      background: rgba(26, 122, 90, 0.06);
+      color: var(--green);
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
+    .switcher-pill.is-active {
+      background: var(--green);
+      border-color: var(--green);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(26, 122, 90, 0.35);
+    }
+
+    /* =========================================================
+       SECTION 3: WHAT WE OFFER — CAPABILITIES
+       (Crisp White Cards on Dark Background per Reference)
+    ========================================================= */
+    .section-capabilities {
+      background: #101514;
+      color: var(--off-white);
+      padding: clamp(90px, 10vw, 140px) 5vw;
+      position: relative;
+    }
+
+    .capabilities-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .caps-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+
+    .caps-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .caps-title {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 4.5vw, 64px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    @media (max-width: 1200px) {
+      .caps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .caps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .caps-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cap-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 30px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease;
+    }
+
+    .cap-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(47, 234, 160, 0.5);
+    }
+
+    .cap-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 18px;
+      color: var(--green);
+    }
+
+    .cap-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke-width: 1.8;
+    }
+
+    .cap-title {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #151A17;
+      margin: 0 0 10px 0;
+      line-height: 1.3;
+    }
+
+    .cap-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #5A625C;
+      margin: 0;
+    }
+
+    /* =========================================================
+       SECTION 4: DISCIPLINE IN ACTION (Real Cactus Work)
+    ========================================================= */
+    .section-work {
+      padding: clamp(90px, 10vw, 140px) 5vw;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .work-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .work-head-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .work-kicker {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--disc-accent);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .work-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 56px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-dark);
+      text-align: center;
+      margin: 0;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 1024px) {
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .work-explore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--obsidian);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      margin-top: 8px;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .work-explore-btn:hover {
+      background: var(--green);
+      transform: translateY(-2px);
+    }
+
+    .work-tile {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .work-tile:hover {
+      transform: translateY(-4px);
+    }
+
+    .work-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #000000;
+    }
+
+    .work-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms ease;
+    }
+
+    .work-tile:hover .work-thumb {
+      transform: scale(1.04);
+    }
+
+    .work-play-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.28);
+      transition: background 300ms ease;
+    }
+
+    .work-tile:hover .work-play-badge {
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    .play-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      transition: transform 300ms ease, background 300ms ease, color 300ms ease;
+    }
+
+    .work-tile:hover .play-circle {
+      transform: scale(1.1);
+      background: var(--green-bright);
+      color: #101514;
+    }
+
+    .work-tile-body {
+      padding: 14px 2px 0 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .work-client {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    .work-tile-title {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 1.5vw, 22px);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    /* =========================================================
+       SECTION 5: CLIENT LOGOS INFINITE HORIZONTAL MARQUEE
+    ========================================================= */
+    .section-clients {
+      padding: clamp(60px, 7vw, 84px) 0;
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--border-soft);
+      overflow: hidden;
+    }
+
+    .clients-inner {
+      width: 100%;
+      text-align: center;
+    }
+
+    .clients-kicker {
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 36px;
+      display: block;
+      padding: 0 5vw;
+    }
+
+    .clients-marquee-container {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .clients-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      width: max-content;
+      animation: marquee-scroll 55s linear infinite;
+    }
+
+    .clients-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .client-logo-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .client-logo-item img {
+      max-height: 44px;
+      max-width: 140px;
+      object-fit: contain;
+      filter: grayscale(1) opacity(0.7);
+      mix-blend-mode: multiply;
+      transition: filter 250ms ease, transform 250ms ease, opacity 250ms ease;
+    }
+
+    .client-logo-item:hover img {
+      filter: grayscale(0) opacity(1);
+      transform: scale(1.08);
+      mix-blend-mode: normal;
+    }
+
+    /* =========================================================
+       SECTION 6: NEXT DISCIPLINE STRIP & CONVERSION CTA
+    ========================================================= */
+    .section-next-disc {
+      padding: 80px 5vw;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .next-disc-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 28px;
+    }
+
+    .next-disc-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform var(--transition);
+    }
+
+    .next-disc-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .next-disc-sub {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .next-disc-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 2.8vw, 38px);
+      font-weight: 400;
+      color: var(--text-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .next-disc-arrow {
+      color: var(--disc-accent);
+      transition: transform 250ms ease;
+    }
+
+    .next-disc-link:hover .next-disc-arrow {
+      transform: translateX(6px);
+    }
+
+    .next-disc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 36px;
+      border-radius: 999px;
+      background: var(--obsidian);
+      color: var(--off-white);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+
+    .next-disc-cta:hover {
+      background: var(--disc-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    /* =========================================================
+       VIDEO LIGHTBOX MODAL
+    ========================================================= */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10, 14, 12, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 300ms ease;
+    }
+
+    .video-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .video-dialog {
+      max-width: 1040px;
+      width: 100%;
+      background: #111613;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    }
+
+    .video-dialog-head {
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    .video-player-wrap {
+      aspect-ratio: 16 / 9;
+      background: #000000;
+    }
+
+    .video-player-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 200ms ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--disc-accent);
+    }
+
+    /* =========================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+    ========================================================= */
+    .site-footer {
+      background-color: #151A17;
+      color: #F4F1E8;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .site-footer__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(80px, 9vw, 120px) 5vw 40px;
+    }
+
+    .site-footer__grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.35fr) minmax(130px, 0.75fr) minmax(240px, 1.15fr) minmax(200px, 0.95fr);
+      gap: clamp(32px, 4.5vw, 64px);
+      align-items: start;
+    }
+
+    .site-footer__col--brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-footer__logo-link {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+
+    .site-footer__logo {
+      width: 148px;
+      height: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .site-footer__tagline-meta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #9A9D96;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .site-footer__positioning {
+      font-size: 14.5px;
+      line-height: 1.68;
+      color: #9A9D96;
+      max-width: 320px;
+      margin-bottom: 28px;
+    }
+
+    .site-footer__socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .site-footer__social-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(244, 241, 232, 0.16);
+      border-radius: 50%;
+      color: #F4F1E8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__social-btn:hover {
+      background-color: #24523F;
+      border-color: #24523F;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .site-footer__heading {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #F4F1E8;
+      margin-bottom: 24px;
+    }
+
+    .site-footer__nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .site-footer__nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9A9D96;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__nav-link:hover {
+      color: #F4F1E8;
+      transform: translateX(4px);
+    }
+
+    .site-footer__family-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 28px;
+    }
+
+    .site-footer__address {
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-footer__contact-line {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #9A9D96;
+      margin: 0;
+    }
+
+    .site-footer__contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+    }
+
+    .site-footer__contact-link {
+      font-size: 14px;
+      color: #9A9D96;
+      text-decoration: none;
+      transition: color 300ms ease;
+    }
+
+    .site-footer__contact-link:hover {
+      color: #F4F1E8;
+    }
+
+    .site-footer__talk-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: #F4F1E8;
+      text-decoration: none;
+      transition: color 300ms ease, gap 300ms ease;
+    }
+
+    .site-footer__talk-cta span {
+      position: relative;
+    }
+
+    .site-footer__talk-cta span::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0.7);
+      transform-origin: left;
+      transition: transform 300ms ease;
+    }
+
+    .site-footer__talk-cta:hover {
+      color: #2feaa0;
+      gap: 12px;
+    }
+
+    .site-footer__talk-cta:hover span::after {
+      transform: scaleX(1);
+    }
+
+    .site-footer__bottom {
+      margin-top: clamp(60px, 7vw, 90px);
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+      color: #9A9D96;
+      letter-spacing: 0.03em;
+    }
+
+    .site-footer__copyright {
+      font-size: 12px;
+      color: #9A9D96;
+    }
+
+    .site-footer__back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9A9D96;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+      transition: color 250ms ease, transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover {
+      color: #F4F1E8;
+      transform: translateY(-2px);
+    }
+
+    .site-footer__back-arrow {
+      font-size: 13px;
+      line-height: 1;
+      display: inline-block;
+      transition: transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover .site-footer__back-arrow {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 1024px) {
+      .site-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px 36px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 2;
+      }
+      .site-footer__positioning {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-footer__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 1;
+      }
+      .site-footer__family-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 20px;
+      }
+      .site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+
+    /* =========================================================
+       GLOBAL NAV DRAWER (Exact match with services, about & work)
+    ========================================================= */
+    .navsheet {
+      position: fixed; inset: 0; z-index: 200;
+      visibility: hidden; transition: visibility 0s linear .44s;
+    }
+
+    .navsheet.is-open { visibility: visible; transition: visibility 0s linear 0s; }
+
+    .navsheet__scrim {
+      position: absolute; inset: 0;
+      background: rgba(5,17,24,0.50);
+      opacity: 0;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: opacity .32s ease, backdrop-filter .32s ease, -webkit-backdrop-filter .32s ease;
+    }
+
+    .navsheet.is-open .navsheet__scrim {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navsheet__panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(100%, 480px);
+      display: flex; flex-direction: column;
+      padding: 120px clamp(32px,6vw,56px) 48px;
+      padding-bottom: max(48px, env(safe-area-inset-bottom));
+      background: radial-gradient(circle at 85% 12%, rgba(47, 234, 160, 0.12) 0%, transparent 55%),
+                  linear-gradient(165deg, #12211C 0%, #0d1a16 45%, #070f0c 100%);
+      backdrop-filter: blur(30px) saturate(140%);
+      -webkit-backdrop-filter: blur(30px) saturate(140%);
+      border-left: 1px solid rgba(47, 234, 160, 0.14);
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.65), inset 1px 0 0 rgba(47, 234, 160, 0.06);
+      color: #fff;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .44s cubic-bezier(.7, 0, .84, 0);
+    }
+
+    .navsheet.is-open .navsheet__panel {
+      transform: translateX(0);
+      transition: transform .68s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .navsheet__list { list-style: none; }
+    .navsheet__list li { border-top: 1px solid rgba(255,255,255,0.08); }
+    .navsheet__list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .navsheet__link {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: clamp(18px,2.8vh,26px) 2px;
+      text-decoration: none;
+      color: #fff;
+      font-size: clamp(1.8rem,5vw,2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease, color .25s ease;
+    }
+
+    .navsheet.is-open .navsheet__link {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1), color .25s ease;
+      transition-delay: calc(.18s + var(--i) * .07s), calc(.18s + var(--i) * .07s), 0s;
+    }
+
+    .navsheet__link svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0; opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .navsheet__link:hover, .navsheet__link:focus-visible, .navsheet__link.active { color: #2feaa0; }
+    .navsheet__link:hover svg, .navsheet__link:focus-visible svg, .navsheet__link.active svg { opacity: 1; transform: translateX(0); }
+
+    .navsheet__foot {
+      margin-top: auto;
+      padding-top: clamp(32px,6vh,56px);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .navsheet.is-open .navsheet__foot {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+      transition-delay: .44s;
+    }
+
+    .navsheet__contact { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .navsheet__contact a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color .2s ease; }
+    .navsheet__contact a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================
+       SITE HEADER (Sticky, starts transparent, frosted on scroll)
+  ======================================================== -->
+  <header class="header" id="siteHeader">
+    <a href="index.html" class="logo-wrap" aria-label="Cactus Ethiopia Home">
+      <img src="cactus-logo.png" alt="Cactus Ethiopia" class="logo" />
+    </a>
+    <div class="header-nav">
+      <span class="explore" id="exploreBtn">Explore</span>
+      <button class="menu-button" id="menuBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =======================================================
+       SECTION 1: CINEMATIC PHOTOGRAPHIC HERO (48vh, Hard Cut)
+  ======================================================== -->
+  <section class="discipline-hero" id="heroSection">
+    <!-- Monumental Oversized Brand Mark in Hero (Adaptive Service Tint) -->
+    <div class="brand-monolith brand-monolith--hero-right brand-monolith--theme-adaptive" id="heroMonolith" data-parallax data-parallax-speed="0.06" data-base-transform="rotate(-3deg)" aria-hidden="true">
+      <img src="assets/cactus-mark.svg" alt="" />
+    </div>
+    <div class="hero-bg-media">
+      <img id="heroBgImg" src="hero images/imgi_7_MicrosoftTeams-image-scaled.jpg" alt="Cactus Creative Work" class="hero-bg-img" />
+      <div class="hero-photo-tint"></div>
+    </div>
+
+    <div class="hero-content-wrap">
+      <div class="hero-bottom-grid">
+        <div class="hero-eyebrow-col">
+          <span class="hero-eyebrow text-reveal-eyebrow">OUR SERVICES</span>
+        </div>
+        <div class="hero-title-col">
+          <h1 class="hero-display-title editorial-reveal-target" id="heroDisplayTitle">ADVERTISING &amp; BRANDING</h1>
+        </div>
+        <div class="hero-statement-col">
+          <p class="hero-statement text-reveal-body" id="heroStatement">WE BUILD BRANDS THAT ENTER CULTURE.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SECTION 2: EDITORIAL MULTIDISCIPLINARY SPREAD
+       (Hard Clean Architectural Cut from Hero)
+  ======================================================== -->
+  <section class="section-manifesto" id="manifestoSection">
+    <!-- Subtle Architectural Mark Emerging on Far Left Edge -->
+    <div class="brand-monolith brand-monolith--edge-left brand-monolith--theme-emerald" data-parallax data-parallax-speed="0.04" data-base-transform="translateY(-50%) rotate(3deg)" aria-hidden="true" style="opacity: 0.035;">
+      <img src="assets/cactus-mark.svg" alt="" />
+    </div>
+    <div class="manifesto-inner">
+      <div class="manifesto-headline-wrap">
+        <h2 class="editorial-statement editorial-reveal-target" id="editorialStatement">
+          Where brands find their voice<br>and <span class="statement-accent">enter&nbsp;culture.</span>
+        </h2>
+      </div>
+
+      <div class="editorial-body">
+        <p class="editorial-lead text-reveal-body" id="serviceLeadQuote">
+          “We build brands and campaigns that know how to enter culture - from full 360° platforms to sharp tactical bursts. This is where brands find their voice, sharpen their identity and become impossible to ignore.”
+        </p>
+        <p id="serviceEditorialSub" class="text-reveal-body">
+          At Cactus, strategy, creativity, production and digital come together to build work that moves brands forward. From brand thinking and creative campaigns to film, motion, social, design and digital experiences, our disciplines work together rather than in isolation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Discipline Exploration Switcher Bar -->
+    <div class="switcher-bar-wrap">
+      <div class="switcher-label-row">
+        <span class="switcher-kicker text-reveal-eyebrow">OUR SERVICES //</span>
+        <span class="switcher-hint text-reveal-body">Select a service to inspect capabilities and portfolio work</span>
+      </div>
+      <div class="discipline-switcher-strip" aria-label="Switch Service View">
+        <button type="button" class="switcher-pill is-active" data-disc="01">01 Advertising &amp; Branding</button>
+        <button type="button" class="switcher-pill" data-disc="02">02 Strategy Development</button>
+        <button type="button" class="switcher-pill" data-disc="03">03 Digital Services</button>
+        <button type="button" class="switcher-pill" data-disc="04">04 Video &amp; Audio Production</button>
+        <button type="button" class="switcher-pill" data-disc="05">05 Media Planning &amp; Buying</button>
+        <button type="button" class="switcher-pill" data-disc="06">06 Account Management</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SECTION 3: WHAT WE OFFER (The Capabilities Docket)
+  ======================================================== -->
+  <section class="section-capabilities" id="capabilitiesSection">
+    <div class="capabilities-inner">
+      <div class="caps-header">
+        <span class="caps-kicker text-reveal-eyebrow" id="capsKicker">WHAT WE OFFER</span>
+        <h2 class="caps-title editorial-reveal-target" id="capsTitle">Advertising &amp; Branding Capabilities</h2>
+      </div>
+
+      <div class="caps-grid" id="capsGrid">
+        <!-- Dynamically populated from dataset -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SECTION 4: DISCIPLINE IN ACTION (Real Portfolio Work)
+  ======================================================== -->
+  <section class="section-work" id="workSection">
+    <div class="work-inner">
+      <div class="work-head-row">
+        <div>
+          <span class="work-kicker text-reveal-eyebrow" id="workKicker">PORTFOLIO // RECENT WORK</span>
+          <h2 class="work-title editorial-reveal-target">Discipline in Action</h2>
+        </div>
+        <a href="work.html" class="work-explore-btn text-reveal-eyebrow">Explore All Work &rarr;</a>
+      </div>
+
+      <div class="work-grid" id="workGrid">
+        <!-- Dynamically populated from dataset -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SECTION 5: CLIENT LOGOS INFINITE HORIZONTAL MARQUEE
+  ======================================================== -->
+  <section class="section-clients" aria-label="Clients that trust Cactus">
+    <div class="clients-inner">
+      <span class="clients-kicker text-reveal-eyebrow">Brands That Trust Our Strategic &amp; Creative Execution</span>
+      <div class="clients-marquee-container">
+        <div class="clients-marquee-track">
+          <!-- First Complete Set of 20 Clients -->
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Heineken.png" alt="Heineken" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Coca-Cola_logo.png" alt="Coca-Cola" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Unilever_logo.png" alt="Unilever" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/BoA Logo Horizontal copy.png" alt="Bank of Abyssinia" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/DSTV.png" alt="DStv" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Dashen_Bank.png" alt="Dashen Bank" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Hyatt-Regency-.png" alt="Hyatt Regency" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/JWalker.png" alt="Johnnie Walker" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Vaseline_Logo.svg.png" alt="Vaseline" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/MIDRO - Solid Logo.png" alt="MIDROC" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/sheraten addis.jpg" alt="Sheraton Addis" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Kana_TV.png" alt="Kana TV" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/DKT.png" alt="DKT Ethiopia" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/OMO.png" alt="OMO" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/AXE.png" alt="AXE" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/LUX.png" alt="LUX" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Signal logo.png" alt="Signal" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/SunLight.jpg" alt="SunLight" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/MAMCO LOGO.png" alt="MAMCO" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/LB-new-logo-BW.png" alt="LB" /></div>
+          <!-- Second Set for seamless, continuous infinite loop -->
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Heineken.png" alt="Heineken" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Coca-Cola_logo.png" alt="Coca-Cola" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Unilever_logo.png" alt="Unilever" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/BoA Logo Horizontal copy.png" alt="Bank of Abyssinia" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/DSTV.png" alt="DStv" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Dashen_Bank.png" alt="Dashen Bank" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Hyatt-Regency-.png" alt="Hyatt Regency" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/JWalker.png" alt="Johnnie Walker" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Vaseline_Logo.svg.png" alt="Vaseline" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/MIDRO - Solid Logo.png" alt="MIDROC" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/sheraten addis.jpg" alt="Sheraton Addis" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Kana_TV.png" alt="Kana TV" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/DKT.png" alt="DKT Ethiopia" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/OMO.png" alt="OMO" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/AXE.png" alt="AXE" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/LUX.png" alt="LUX" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/Signal logo.png" alt="Signal" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/SunLight.jpg" alt="SunLight" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/MAMCO LOGO.png" alt="MAMCO" /></div>
+          <div class="client-logo-item"><img src="Cactus Ethiopia Clients/LB-new-logo-BW.png" alt="LB" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       SECTION 6: NEXT DISCIPLINE STRIP & CONVERSION CTA
+  ======================================================== -->
+  <section class="section-next-disc">
+    <div class="next-disc-inner">
+      <a href="javascript:void(0);" class="next-disc-link" id="nextDiscLink">
+        <span class="next-disc-sub text-reveal-eyebrow">Next Discipline</span>
+        <span class="next-disc-title editorial-reveal-target">
+          <span id="nextDiscTitle">02 // Strategy Development</span>
+          <span class="next-disc-arrow">&rarr;</span>
+        </span>
+      </a>
+
+      <a href="contact.html" class="next-disc-cta text-reveal-eyebrow">
+        <span>Start a Conversation</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       VIDEO MODAL (For Television Commercials)
+  ======================================================== -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-hidden="true">
+    <div class="video-dialog">
+      <div class="video-dialog-head">
+        <h3 id="videoModalTitle" style="font-size:16px; font-weight:700;">Commercial Preview</h3>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close video">&times;</button>
+      </div>
+      <div class="video-player-wrap">
+        <video id="modalVideoPlayer" controls playsinline preload="auto">
+          <source id="modalVideoSource" src="" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+  ======================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer__inner">
+
+      <!-- MAIN 4-COLUMN GRID -->
+      <div class="site-footer__grid">
+
+        <!-- COLUMN 1: CACTUS IDENTITY -->
+        <div class="site-footer__col site-footer__col--brand">
+          <a href="index.html" class="site-footer__logo-link" aria-label="Cactus Ethiopia Home">
+            <img src="cactus-logo.png" alt="Cactus Ethiopia" class="site-footer__logo" />
+          </a>
+          <div class="site-footer__tagline-meta text-reveal-eyebrow">
+            <span>COMMUNICATIONS &middot; ADVERTISING &middot; PRODUCTION</span>
+          </div>
+          <p class="site-footer__positioning text-reveal-body">
+            Two decades of shaping Ethiopian brand culture with bold ideas, strategic precision, and relentless creative execution.
+          </p>
+          <div class="site-footer__socials text-reveal-eyebrow" aria-label="Social media links">
+            <a href="https://www.linkedin.com/company/cactus-advertising/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/cactusethiopia/?hl=en" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@cactusethiopia?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: EXPLORE -->
+        <div class="site-footer__col site-footer__col--nav">
+          <h4 class="site-footer__heading text-reveal-eyebrow">EXPLORE</h4>
+          <ul class="site-footer__nav-list">
+            <li><a href="about.html" class="site-footer__nav-link text-reveal-body">About</a></li>
+            <li><a href="services.html" class="site-footer__nav-link text-reveal-body">Capabilities / Services</a></li>
+            <li><a href="work.html" class="site-footer__nav-link text-reveal-body">Work</a></li>
+            <li><a href="partners.html" class="site-footer__nav-link text-reveal-body">Our Family</a></li>
+            <li><a href="about.html#team" class="site-footer__nav-link text-reveal-body">People</a></li>
+            <li><a href="contact.html" class="site-footer__nav-link text-reveal-body">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: OUR FAMILY -->
+        <div class="site-footer__col site-footer__col--family">
+          <h4 class="site-footer__heading text-reveal-eyebrow">OUR FAMILY</h4>
+          <div class="site-footer__family-grid">
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#prologue" class="site-footer__nav-link text-reveal-body">Prologue</a></li>
+              <li><a href="partners.html#pulse" class="site-footer__nav-link text-reveal-body">Pulse Marketing</a></li>
+              <li><a href="partners.html#whats-out" class="site-footer__nav-link text-reveal-body">What’s Out</a></li>
+            </ul>
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#omnimedia" class="site-footer__nav-link text-reveal-body">OmniMedia</a></li>
+              <li><a href="partners.html#canvas" class="site-footer__nav-link text-reveal-body">Canvas</a></li>
+              <li><a href="contact.html#plaza" class="site-footer__nav-link text-reveal-body">Cactus Plaza</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- COLUMN 4: GET IN TOUCH -->
+        <div class="site-footer__col site-footer__col--contact">
+          <h4 class="site-footer__heading text-reveal-eyebrow">GET IN TOUCH</h4>
+          <address class="site-footer__address">
+            <p class="site-footer__contact-line text-reveal-body">Addis Ababa, Ethiopia</p>
+            <p class="site-footer__contact-line text-reveal-body">Bole Road</p>
+            <p class="site-footer__contact-line text-reveal-body">Cactus Plaza, 2nd Floor</p>
+            <div class="site-footer__contact-meta">
+              <a href="mailto:info@cactusethiopia.com" class="site-footer__contact-link text-reveal-body">info@cactusethiopia.com</a>
+              <a href="tel:+251115544901" class="site-footer__contact-link text-reveal-body">+251 11 554 4901</a>
+            </div>
+            <a href="contact.html" class="site-footer__talk-cta text-reveal-eyebrow">
+              <span>let's talk</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </address>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM BAR: HORIZONTAL DIVIDER + LEGAL + BACK TO TOP -->
+      <div class="site-footer__bottom">
+        <div class="site-footer__copyright text-reveal-eyebrow">
+          &copy; 2026 Cactus. All rights reserved.
+        </div>
+        <button type="button" class="site-footer__back-to-top text-reveal-eyebrow" id="backToTopBtn" aria-label="Back to top">
+          <span>BACK TO TOP</span>
+          <span class="site-footer__back-arrow">&uarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =======================================================
+       SLIDE-OUT NAV SHEET
+  ======================================================== -->
+  <div class="navsheet" id="navSheet" inert>
+    <div class="navsheet__scrim" id="navCloseScrim"></div>
+    <nav class="navsheet__panel" aria-label="Menu">
+      <ul class="navsheet__list">
+        <li style="--i:0"><a class="navsheet__link" href="index.html"><span>Home Page</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:1"><a class="navsheet__link" href="about.html"><span>About Us</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:2"><a class="navsheet__link" href="work.html"><span>Our Work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:3"><a class="navsheet__link active" href="services.html"><span>Our Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:4"><a class="navsheet__link" href="partners.html"><span>Our Partners</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:5"><a class="navsheet__link" href="contact.html"><span>Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+      <div class="navsheet__foot">
+        Cactus Plaza - 2nd Floor, Bole Road<br>
+        Addis Ababa, Ethiopia<br>
+        <a href="tel:+251115544901">+251 11 554 4901</a><br>
+        <a href="mailto:info@cactusethiopia.com">info@cactusethiopia.com</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- =======================================================
+       JAVASCRIPT & DISCIPLINE DATASET ENGINE
+  ======================================================== -->
+  <script>
+    // =========================================================
+    // COMPREHENSIVE 6-DISCIPLINE DATASET
+    // =========================================================
+    const disciplinesData = {
+      "01": {
+        id: "01",
+        slug: "advertising-branding",
+        title: "Advertising & Branding",
+        headline: "Where brands find their voice<br>and <span class=\"statement-accent\">enter&nbsp;culture.</span>",
+        heroStatement: "WE BUILD BRANDS THAT ENTER CULTURE.",
+        color: "#1a7a5a",
+        heroImg: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+        desc: "We build brands and campaigns that know how to enter culture - from full 360° platforms to sharp tactical bursts. This is where brands find their voice, sharpen their identity and become impossible to ignore.",
+        capabilities: [
+          { title: "Brand strategy", desc: "Defining clear brand positioning, archetypes, and long-term commercial market territories." },
+          { title: "Campaign platforms", desc: "Big, repeatable creative ideas engineered to sustain multi-year brand affinity and growth." },
+          { title: "360 campaigns", desc: "Seamless integrated execution across broadcast television, radio, OOH, and experiential." },
+          { title: "Tactical campaigns", desc: "Agile, high-impact seasonal and promotional bursts designed for rapid commercial turnaround." },
+          { title: "Brand identity", desc: "Distinctive visual systems: logomarks, typography, color architecture, and iconography." },
+          { title: "Design systems", desc: "Scalable brand guidelines, layout grids, motion rules, and asset toolkits." },
+          { title: "Copywriting", desc: "Persuasive storytelling and punchy messaging crafted in Amharic, English, and regional languages." },
+          { title: "Art direction", desc: "Masterful visual leadership across set design, casting, typography, and staging." },
+          { title: "Creative supervision", desc: "Quality assurance safeguarding idea fidelity from initial brief to broadcast master." },
+          { title: "Marketing collateral", desc: "Packaging design, corporate literature, point-of-sale displays, and retail touchpoints." }
+        ],
+        work: [
+          {
+            client: "Bedele Special Beer",
+            badge: "National Rebrand",
+            title: "Rebrand Reveal & TVC",
+            poster: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+            video: "our work/TVC/Bedele Rebrand Reveal Video.mp4"
+          },
+          {
+            client: "Harar Beer",
+            badge: "Brand Platform",
+            title: "The Storyteller & Pay with Laughter",
+            poster: "hero images/Harar Beer - Pay with Laughter.png",
+            video: "our work/TVC/Harar - 2017 - FCN - The Storyteller_ May15_Final.mp4"
+          },
+          {
+            client: "Bank of Abyssinia",
+            badge: "Fintech Platform",
+            title: "BOA Apollo Investment Launch",
+            poster: "our work/Social Media/BoA/Apollo _online trader_2.png",
+            video: "our work/TVC/BOA APOLLO Amended 5.mp4"
+          }
+        ]
+      },
+
+      "02": {
+        id: "02",
+        slug: "strategy-development",
+        title: "Strategy Development",
+        headline: "Great creative work starts before<br><span class=\"statement-accent\">the creative work begins.</span>",
+        heroStatement: "WE TURN BUSINESS CHALLENGES INTO CREATIVE OPPORTUNITIES.",
+        color: "#1a7a5a",
+        heroImg: "hero images/imgi_18_DStv-Project-Haile-01.jpg",
+        desc: "Great creative work starts before the creative work begins. Our strategy process digs into audiences, markets and culture to find the truth that gives every idea its direction, relevance and power. We turn business challenges into clear creative opportunities — so every solution is built with purpose from the start.",
+        capabilities: [
+          { title: "Brand positioning", desc: "Carving distinctive, defensible market territories that set brands apart from competitors." },
+          { title: "Consumer insight", desc: "Qualitative and quantitative audience research unearthing real behavioral motivators." },
+          { title: "Campaign strategy", desc: "Integrated strategic roadmaps aligning business goals with creative expression." },
+          { title: "Communication planning", desc: "Channel architecture defining where, when, and how brands should connect with audiences." },
+          { title: "Market and category analysis", desc: "Deep-dive landscape audits identifying emerging trends and whitespace opportunities." },
+          { title: "Creative territories", desc: "Rich conceptual foundations and visual platforms that guide long-term ideation." },
+          { title: "Messaging frameworks", desc: "Structured narrative hierarchies ensuring consistency across all marketing touchpoints." }
+        ],
+        work: [
+          {
+            client: "DStv Ethiopia",
+            badge: "Market Strategy",
+            title: "Ethiopian Premier League (EtPL)",
+            poster: "hero images/imgi_18_DStv-Project-Haile-01.jpg",
+            video: "our work/TVC/DStv EtPL TVC  30sec Final_Sep 17.mp4"
+          },
+          {
+            client: "Bank of Abyssinia",
+            badge: "Brand Architecture",
+            title: "Retail & Digital Banking Transformation",
+            poster: "hero images/Bank of Abyssinia - Award-Winning Project.png",
+            video: "our work/TVC/BOA APOLLO Amended 5.mp4"
+          },
+          {
+            client: "Harar Beer",
+            badge: "Cultural Strategy",
+            title: "Cultural Relevance & Harari Heritage",
+            poster: "hero images/Harar Beer - Pay with Laughter.png",
+            video: "our work/TVC/Harar - 2017 - FCN - The Storyteller_ May15_Final.mp4"
+          }
+        ]
+      },
+
+      "03": {
+        id: "03",
+        slug: "digital-services",
+        title: "Digital Services",
+        headline: "Building content ecosystems that move<br>with <span class=\"statement-accent\">audience&nbsp;behaviour.</span>",
+        heroStatement: "WE BUILD CONTENT ECOSYSTEMS THAT MOVE AUDIENCES.",
+        color: "#1a7a5a",
+        heroImg: "hero images/imgi_4_DSTV-cover-2nd-scaled.jpg",
+        desc: "Digital is not just where brands post — it is where people react, remix, question, share and decide what matters. Our digital team blends creativity, analytics and platform intelligence to build content ecosystems that move with audience behaviour. We help brands show up with relevance, consistency and measurable impact.",
+        capabilities: [
+          { title: "Digital strategy", desc: "Holistic roadmaps integrating brand narrative with digital distribution and conversion." },
+          { title: "Social media campaigns", desc: "Culturally fluent campaigns designed to spark conversations, shares, and trends." },
+          { title: "Content calendars", desc: "Always-on editorial frameworks ensuring disciplined, thematic brand presence." },
+          { title: "Short-form content", desc: "Snackable, vertical video optimized for TikTok, Instagram Reels, and YouTube Shorts." },
+          { title: "Community management", desc: "Active social listening, moderation, and audience engagement fostering brand loyalty." },
+          { title: "Influencer strategy", desc: "Vetted creator partnerships aligning authentic cultural voices with brand objectives." },
+          { title: "Paid social", desc: "Precision media targeting maximizing return on ad spend across Meta, Google, and TikTok." },
+          { title: "Digital reporting", desc: "Transparent performance dashboards tracking reach, engagement, sentiment, and conversions." },
+          { title: "Website / landing page content", desc: "Conversion-optimized copy and interactive digital touchpoints for campaign rollouts." },
+          { title: "Interactive campaign ideas", desc: "Digital activations, contests, filters, and gamified brand experiences." }
+        ],
+        work: [
+          {
+            client: "Pepsi Ethiopia",
+            badge: "Digital Campaign",
+            title: "Thirsty for More — Digital Ecosystem",
+            poster: "hero images/imgi_10_new-thumbnail.jpg",
+            video: "hero images/Pepsi — Thirsty for More.mp4"
+          },
+          {
+            client: "Vaseline Ethiopia",
+            badge: "Social Marketing",
+            title: "Feel the Moisture, Feel the Beauty",
+            poster: "hero images/imgi_6_2-5.jpg",
+            video: "hero images/Vaseline — See the Moisture, Feel the Beauty.mp4"
+          },
+          {
+            client: "Bank of Abyssinia",
+            badge: "Social Media Campaign",
+            title: "Apollo Social Series & Online Trader",
+            poster: "our work/Social Media/BoA/Apollo _online trader_2.png",
+            video: "our work/TVC/BOA APOLLO Amended 5.mp4"
+          }
+        ]
+      },
+
+      "04": {
+        id: "04",
+        slug: "production",
+        title: "Video & Audio Production",
+        headline: "Ideas become powerful when people can<br><span class=\"statement-accent\">see, hear and feel them.</span>",
+        heroStatement: "WE TRANSFORM BRAND THINKING INTO IMMERSIVE STORIES.",
+        color: "#1a7a5a",
+        heroImg: "hero images/imgi_10_new-thumbnail.jpg",
+        desc: "Ideas become powerful when people can see them, hear them and feel them. Our production team transforms brand thinking into immersive audio and visual stories. Every asset is crafted to carry the idea clearly, strengthen the brand narrative and land with impact across the right channels.",
+        capabilities: [
+          { title: "TVCs", desc: "Broadcast-quality television commercials shot on cinema glass with top-tier talent." },
+          { title: "Radio", desc: "Catchy audio ads, memorable jingles, and multi-language voiceovers recorded in studio." },
+          { title: "Corporate films", desc: "High-level documentary and stakeholder films articulating vision and institutional impact." },
+          { title: "Case study films", desc: "Compelling project retrospectives illustrating problem, insight, idea, and measurable results." },
+          { title: "Social content", desc: "Agile, high-volume production for agile digital campaigns and influencer collaborations." },
+          { title: "Animation", desc: "2D and 3D motion graphics explaining complex products and bringing brands to life." },
+          { title: "Photography", desc: "High-resolution commercial photography for billboards, packaging, and digital libraries." },
+          { title: "Voice-over production", desc: "Native voice casting and pristine bilingual voiceovers across Ethiopian languages." },
+          { title: "Editing", desc: "State-of-the-art narrative offline and online editing across broadcast specifications." },
+          { title: "Sound design", desc: "Original soundscapes, Foley effects, and immersive surround audio engineering." },
+          { title: "Post-production", desc: "Comprehensive mastering, color grading, VFX compositing, and final deliverables." }
+        ],
+        work: [
+          {
+            client: "Bedele Special Beer",
+            badge: "Cinema TVC",
+            title: "Bedele Rebrand Reveal Video",
+            poster: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+            video: "our work/TVC/Bedele Rebrand Reveal Video.mp4"
+          },
+          {
+            client: "Harar Beer",
+            badge: "Broadcast TVC",
+            title: "Harar — The Storyteller Commercial",
+            poster: "hero images/Harar Beer - Pay with Laughter.png",
+            video: "our work/TVC/Harar - 2017 - FCN - The Storyteller_ May15_Final.mp4"
+          },
+          {
+            client: "Addis International Conference Center",
+            badge: "Corporate Film",
+            title: "AICC Architectural Vision",
+            poster: "hero images/imgi_4_DSTV-cover-2nd-scaled.jpg",
+            video: "hero images/Addis International Conference Center (AICC).mp4"
+          }
+        ]
+      },
+
+      "05": {
+        id: "05",
+        slug: "media-planning",
+        title: "Media Planning & Buying",
+        headline: "Media is more than buying space;<br>it is about <span class=\"statement-accent\">people, timing and context.</span>",
+        heroStatement: "WE MAXIMIZE REACH, EFFICIENCY, AND BUSINESS RESULTS.",
+        color: "#1a7a5a",
+        heroImg: "Case Study Pages/BOA - Bank of Abyssinia ET.jpg",
+        desc: "Media is more than buying space — it's about understanding people, timing and context. Our Media Team blends research, audience insight and decades of Ethiopian market experience to create smarter media strategies that maximise reach, improve efficiency and turn every campaign into a stronger business result.",
+        capabilities: [
+          { title: "Media strategy", desc: "Cross-platform distribution frameworks tailored to audience habits and campaign objectives." },
+          { title: "TV, radio, print, OOH planning", desc: "Synchronized cross-medium planning covering prime broadcast, print, and transit media." },
+          { title: "Media buying", desc: "Volume-leveraged rate negotiation and preferred placement acquisition across networks." },
+          { title: "Digital media planning", desc: "Programmatic ad placements, PPC campaigns, and paid social targeting across platforms." },
+          { title: "Campaign monitoring", desc: "Auditing broadcasts and billboard installations to guarantee contractual fulfillment." },
+          { title: "Reporting", desc: "Transparent post-campaign performance reporting tracking impressions, reach, and GRPs." },
+          { title: "Negotiation", desc: "Leveraging our two-decade agency volume to secure preferential rates for our partners." },
+          { title: "Regional media coordination", desc: "End-to-end media placement across Oromia, Amhara, Tigray, Sidama, and Somali regions." },
+          { title: "AI-assisted media monitoring", desc: "Modern automated tracking tools providing rapid verification of broadcast airtimes." }
+        ],
+        work: [
+          {
+            client: "DStv Ethiopia",
+            badge: "360° Media Rollout",
+            title: "EtPL National Media Takeover",
+            poster: "hero images/imgi_18_DStv-Project-Haile-01.jpg",
+            video: "our work/TVC/DStv EtPL TVC  30sec Final_Sep 17.mp4"
+          },
+          {
+            client: "Bedele Beer",
+            badge: "OOH & Broadcast",
+            title: "Nationwide Launch Media Campaign",
+            poster: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+            video: "our work/TVC/Bedele Rebrand Reveal Video.mp4"
+          },
+          {
+            client: "Bank of Abyssinia",
+            badge: "Financial Media Strategy",
+            title: "Multi-Channel Apollo Rollout",
+            poster: "hero images/Bank of Abyssinia - Award-Winning Project.png",
+            video: "our work/TVC/BOA APOLLO Amended 5.mp4"
+          }
+        ]
+      },
+
+      "06": {
+        id: "06",
+        slug: "account-management",
+        title: "Account Management",
+        headline: "The best client relationships feel less like handovers<br>and <span class=\"statement-accent\">more like partnership.</span>",
+        heroStatement: "WE BRIDGE AMBITION AND FLAWLESS DELIVERY.",
+        color: "#1a7a5a",
+        heroImg: "hero images/account-management-hero.png",
+        desc: "We believe the best client relationships feel less like handovers and more like partnership. Our Account Management team acts as the central link between ambition and execution — balancing expectations, coordinating teams and protecting the quality of the work from brief to delivery.",
+        capabilities: [
+          { title: "Client relationship management", desc: "Dedicated senior account leads serving as trusted strategic advisors to client executives." },
+          { title: "Project management", desc: "Disciplined milestone tracking, risk mitigation, and end-to-end workflow orchestration." },
+          { title: "Creative workflow coordination", desc: "Aligning strategists, writers, art directors, and production crews on unified briefs." },
+          { title: "Budgeting and timeline alignment", desc: "Rigorous financial oversight ensuring resource optimization without compromising craft." },
+          { title: "Campaign rollout supervision", desc: "On-the-ground management of multi-stage national rollouts and media asset deliveries." },
+          { title: "Reporting and follow-ups", desc: "Structured recurring reviews analyzing campaign effectiveness and milestone status." },
+          { title: "Cross-team coordination", desc: "Harmonizing creative, media, digital, and production units under one clear vision." }
+        ],
+        work: [
+          {
+            client: "Bank of Abyssinia",
+            badge: "Long-term Partnership",
+            title: "Institutional Strategic Partnership",
+            poster: "hero images/account-management-hero.png",
+            video: "our work/TVC/BOA APOLLO Amended 5.mp4"
+          },
+          {
+            client: "Heineken Ethiopia",
+            badge: "Multi-Brand Portfolio",
+            title: "Portfolio Account Governance",
+            poster: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+            video: "our work/TVC/Bedele Rebrand Reveal Video.mp4"
+          },
+          {
+            client: "DStv Ethiopia",
+            badge: "Entertainment & Sports",
+            title: "National Broadcast Coordination",
+            poster: "hero images/imgi_4_DSTV-cover-2nd-scaled.jpg",
+            video: "our work/TVC/DStv EtPL TVC  30sec Final_Sep 17.mp4"
+          }
+        ]
+      }
+    };
+
+    // =========================================================
+    // CAPABILITY ICON GENERATOR (Cactus Styled SVG Line Icons)
+    // =========================================================
+    function getCapabilityIcon(title) {
+      const lower = title.toLowerCase();
+      if (lower.includes("design") || lower.includes("identity") || lower.includes("collateral") || lower.includes("art direction")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path></svg>`;
+      }
+      if (lower.includes("content") || lower.includes("system") || lower.includes("calendar")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`;
+      }
+      if (lower.includes("strategy") || lower.includes("campaign") || lower.includes("platform") || lower.includes("territor")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>`;
+      }
+      if (lower.includes("copy") || lower.includes("message") || lower.includes("script")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>`;
+      }
+      if (lower.includes("video") || lower.includes("tvc") || lower.includes("film") || lower.includes("photo") || lower.includes("edit") || lower.includes("post-production")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>`;
+      }
+      if (lower.includes("audio") || lower.includes("radio") || lower.includes("voice") || lower.includes("sound")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`;
+      }
+      if (lower.includes("media") || lower.includes("buying") || lower.includes("planning") || lower.includes("reporting") || lower.includes("insight") || lower.includes("market") || lower.includes("paid")) {
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`;
+      }
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 16 12 12 8"></polygon></svg>`;
+    }
+
+    // =========================================================
+    // DOM ELEMENTS
+    // =========================================================
+    const heroSection = document.getElementById("heroSection");
+    const heroBgImg = document.getElementById("heroBgImg");
+    const heroDisplayTitle = document.getElementById("heroDisplayTitle");
+    const heroActiveDiscName = document.getElementById("heroActiveDiscName");
+    const heroStatement = document.getElementById("heroStatement");
+    const editorialStatement = document.getElementById("editorialStatement");
+    const serviceLeadQuote = document.getElementById("serviceLeadQuote");
+
+    const capsKicker = document.getElementById("capsKicker");
+    const capsTitle = document.getElementById("capsTitle");
+    const capsGrid = document.getElementById("capsGrid");
+    const workGrid = document.getElementById("workGrid");
+
+    const nextDiscLink = document.getElementById("nextDiscLink");
+    const nextDiscTitle = document.getElementById("nextDiscTitle");
+
+    const switcherPills = document.querySelectorAll(".switcher-pill");
+
+    let currentDiscId = "01";
+
+    // =========================================================
+    // RENDER DISCIPLINE ENGINE
+    // =========================================================
+    function renderDiscipline(discId) {
+      const data = disciplinesData[discId];
+      if (!data) return;
+
+      currentDiscId = discId;
+      document.documentElement.style.setProperty("--disc-accent", data.color);
+      document.documentElement.style.setProperty("--monolith-tint", data.color);
+      const heroMonolith = document.getElementById("heroMonolith");
+      if (heroMonolith) {
+        heroMonolith.style.color = data.color;
+      }
+
+      // 1. Switcher Pill Active States
+      switcherPills.forEach(pill => {
+        if (pill.getAttribute("data-disc") === discId) {
+          pill.classList.add("is-active");
+        } else {
+          pill.classList.remove("is-active");
+        }
+      });
+
+      // 2. Hero Elements (Dynamically change service title, eyebrow, statement, and background image)
+      if (heroDisplayTitle) {
+        heroDisplayTitle.style.opacity = "0";
+        heroDisplayTitle.style.transform = "translateY(8px)";
+        setTimeout(() => {
+          heroDisplayTitle.textContent = data.title.toUpperCase();
+          heroDisplayTitle.style.opacity = "1";
+          heroDisplayTitle.style.transform = "translateY(0)";
+        }, 150);
+      }
+
+      if (heroStatement) {
+        heroStatement.style.opacity = "0";
+        setTimeout(() => {
+          heroStatement.textContent = data.heroStatement;
+          heroStatement.style.opacity = "1";
+        }, 150);
+      }
+      if (heroBgImg && data.heroImg) {
+        heroBgImg.style.opacity = "0.2";
+        setTimeout(() => {
+          heroBgImg.src = data.heroImg;
+          heroBgImg.style.opacity = "0.72";
+        }, 180);
+      }
+      document.title = `${data.title} | Services | Cactus Ethiopia`;
+
+      // 3. Editorial Section Dynamic Headline & Lead Quote
+      if (editorialStatement && data.headline) {
+        editorialStatement.style.opacity = "0";
+        setTimeout(() => {
+          editorialStatement.innerHTML = data.headline;
+          editorialStatement.style.opacity = "1";
+        }, 150);
+      }
+      if (serviceLeadQuote) {
+        serviceLeadQuote.style.opacity = "0";
+        setTimeout(() => {
+          serviceLeadQuote.textContent = `“${data.desc}”`;
+          serviceLeadQuote.style.opacity = "1";
+        }, 150);
+      }
+
+      // 4. Capabilities Docket (Crisp White Cards matching Reference)
+      if (capsKicker) {
+        capsKicker.textContent = "WHAT WE OFFER";
+      }
+      if (capsTitle) {
+        capsTitle.textContent = `${data.title} Capabilities`;
+      }
+      if (capsGrid) {
+        capsGrid.innerHTML = data.capabilities.map(cap => `
+          <div class="cap-card card-motion-reveal">
+            <div class="cap-icon text-reveal-eyebrow">${getCapabilityIcon(cap.title)}</div>
+            <h3 class="cap-title text-reveal-title">${cap.title}</h3>
+            <p class="cap-desc text-reveal-body">${cap.desc}</p>
+          </div>
+        `).join("");
+      }
+
+      // 5. Featured Work (Cards with Brand & Title Outside the Card)
+      if (workGrid) {
+        workGrid.innerHTML = data.work.map(w => `
+          <article class="work-tile card-motion-reveal" onclick="openVideoModal('${w.title}', '${w.video}')" tabindex="0" role="button" aria-label="${w.client} — ${w.title}">
+            <div class="work-thumb-wrap">
+              <img src="${w.poster}" alt="${w.title}" class="work-thumb" loading="lazy" />
+              <div class="work-play-badge">
+                <div class="play-circle">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+              </div>
+            </div>
+            <div class="work-tile-body">
+              <span class="work-client text-reveal-eyebrow">${w.client}</span>
+              <h3 class="work-tile-title text-reveal-body">${w.title}</h3>
+            </div>
+          </article>
+        `).join("");
+      }
+
+      // Trigger motion reveals on newly rendered cards
+      if (window.CactusMotion && typeof window.CactusMotion.revealNewCards === 'function') {
+        window.CactusMotion.revealNewCards(capsGrid);
+        window.CactusMotion.revealNewCards(workGrid);
+      }
+
+      // 6. Next Discipline Link
+      const discKeys = Object.keys(disciplinesData);
+      const currentIndex = discKeys.indexOf(discId);
+      const nextIndex = (currentIndex + 1) % discKeys.length;
+      const nextData = disciplinesData[discKeys[nextIndex]];
+      if (nextDiscTitle) {
+        nextDiscTitle.textContent = `${nextData.id} // ${nextData.title}`;
+      }
+      if (nextDiscLink) {
+        nextDiscLink.onclick = () => {
+          renderDiscipline(nextData.id);
+          const sw = document.querySelector(".switcher-bar-wrap");
+          if (sw) sw.scrollIntoView({ behavior: "smooth" });
+        };
+      }
+    }
+
+    // =========================================================
+    // SWITCHER CLICK HANDLERS
+    // =========================================================
+    switcherPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        const discId = pill.getAttribute("data-disc");
+        renderDiscipline(discId);
+        try {
+          history.replaceState(null, "", `?id=${discId}`);
+        } catch (e) {}
+      });
+    });
+
+    // =========================================================
+    // VIDEO MODAL LOGIC
+    // =========================================================
+    const videoModal = document.getElementById("videoModal");
+    const videoModalTitle = document.getElementById("videoModalTitle");
+    const modalVideoPlayer = document.getElementById("modalVideoPlayer");
+    const modalVideoSource = document.getElementById("modalVideoSource");
+    const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+    function openVideoModal(title, videoSrc) {
+      videoModalTitle.textContent = title;
+      modalVideoSource.src = videoSrc;
+      modalVideoPlayer.load();
+      videoModal.classList.add("is-open");
+      videoModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      modalVideoPlayer.play().catch(e => console.warn(e));
+    }
+
+    function closeVideoModal() {
+      modalVideoPlayer.pause();
+      videoModal.classList.remove("is-open");
+      videoModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      modalVideoSource.src = "";
+    }
+
+    if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeVideoModal);
+    if (videoModal) {
+      videoModal.addEventListener("click", (e) => {
+        if (e.target === videoModal) closeVideoModal();
+      });
+    }
+
+    // =========================================================
+    // GLOBAL HEADER SCROLL & NAV DRAWER (Standardized with Site)
+    // =========================================================
+    const siteHeader = document.getElementById("siteHeader");
+    const menuBtn = document.getElementById("menuBtn");
+    const exploreBtn = document.getElementById("exploreBtn");
+    const navSheet = document.getElementById("navSheet");
+    const navCloseScrim = document.getElementById("navCloseScrim");
+    let isMenuOpen = false;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 40) {
+        siteHeader.classList.add("is-scrolled");
+      } else {
+        siteHeader.classList.remove("is-scrolled");
+      }
+    }, { passive: true });
+
+    function setMenu(open) {
+      isMenuOpen = open;
+      if (navSheet) navSheet.classList.toggle("is-open", isMenuOpen);
+      if (menuBtn) {
+        menuBtn.classList.toggle("is-active", isMenuOpen);
+        menuBtn.setAttribute("aria-expanded", String(isMenuOpen));
+        menuBtn.setAttribute("aria-label", isMenuOpen ? "Close menu" : "Open menu");
+      }
+      if (isMenuOpen) {
+        navSheet.removeAttribute("inert");
+      } else {
+        navSheet.setAttribute("inert", "");
+      }
+      document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    }
+
+    if (exploreBtn) exploreBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (menuBtn) menuBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (navCloseScrim) navCloseScrim.addEventListener("click", () => setMenu(false));
+    if (navSheet) {
+      navSheet.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (videoModal && videoModal.classList.contains("is-open")) closeVideoModal();
+        if (isMenuOpen) setMenu(false);
+      }
+    });
+
+    // =========================================================
+    // BACK TO TOP
+    // =========================================================
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
+    // =========================================================
+    // INITIALIZATION (Check URL parameter for discipline id)
+    // =========================================================
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialId = urlParams.get("id") || "01";
+    renderDiscipline(initialId);
+  </script>
+  <!-- Brand Architecture Parallax Engine -->
+  <script src="assets/brand-architecture.js" defer></script>
+  <!-- Universal Motion Engine -->
+  <script src="assets/motion.js" defer></script>
+</body>
+</html>

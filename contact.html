@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Contact Us — Cactus Ethiopia | Let’s Build Something Ethiopia Will Notice</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/brand-architecture.css">
+  <link rel="stylesheet" href="assets/motion.css">
+
+  <style>
+    /* =========================================================
+       RESET & DESIGN SYSTEM
+    ========================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --green: #1a7a5a;
+      --green-bright: #2feaa0;
+      --cream: #f7f7f4;
+      --cream-card: #ffffff;
+      --black: #101214;
+      --dark-green: #0d211c;
+      --dark-black: #0c1210;
+      --white: #ffffff;
+      --border-light: rgba(16, 18, 20, 0.08);
+      --border-dark: rgba(255, 255, 255, 0.12);
+      --muted: #6b7280;
+      --transition: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    button, a, input, select, textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 26px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: transparent;
+      color: #ffffff;
+      transition: background 300ms ease, color 300ms ease, box-shadow 300ms ease, padding 300ms ease;
+    }
+
+    .header.is-scrolled {
+      background: rgba(247, 247, 244, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: var(--black);
+      border-bottom: 1px solid var(--border-light);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      padding: 18px 5vw;
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 155px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+      transition: filter 300ms ease;
+    }
+
+    .header.is-scrolled .logo {
+      filter: none;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .explore {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu-button {
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      color: inherit;
+      padding: 2px 0;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 300ms ease, opacity 300ms ease;
+      transform-origin: center;
+    }
+
+    .menu-button.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-button.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-button.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       HERO BANNER
+    ========================================================= */
+    .contact-hero {
+      position: relative;
+      background: linear-gradient(180deg, #091a15 0%, #0d2720 70%, #10342a 100%);
+      color: #ffffff;
+      padding-top: clamp(130px, 17vh, 180px);
+      padding-bottom: clamp(100px, 14vh, 140px);
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .contact-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 30%, rgba(47, 234, 160, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before,
+    .hero-eyebrow::after {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--green-bright);
+      opacity: 0.7;
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 84px);
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 24px;
+      text-wrap: balance;
+      text-wrap: pretty;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(17px, 1.45vw, 21.5px);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 780px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: var(--green-bright);
+      color: #061914;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      box-shadow: 0 10px 25px rgba(47, 234, 160, 0.25);
+      transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease;
+    }
+
+    .btn-hero-primary:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      transition: background 250ms ease, border-color 250ms ease;
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: #ffffff;
+    }
+
+    /* =========================================================
+       SECTION 01: INQUIRY CATEGORIES (5 CARDS)
+    ========================================================= */
+    .section-inquiries {
+      position: relative;
+      margin-top: clamp(-50px, -6vw, -70px);
+      padding: 0 5vw 80px;
+      z-index: 20;
+    }
+
+    .inquiries-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .inquiries-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .inquiry-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: 36px 32px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+    }
+
+    .inquiry-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--green);
+      box-shadow: 0 20px 48px rgba(26, 122, 90, 0.1);
+    }
+
+    .inquiry-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--green);
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+
+    .inquiry-card:hover::before {
+      opacity: 1;
+    }
+
+    .inquiry-card:nth-child(4) {
+      grid-column: span 1;
+    }
+
+    .inquiry-card:nth-child(5) {
+      grid-column: span 2;
+    }
+
+    .inquiry-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .inquiry-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(26, 122, 90, 0.08);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      transition: background 300ms ease, color 300ms ease;
+    }
+
+    .inquiry-card:hover .inquiry-icon-box {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .inquiry-num {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .inquiry-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .inquiry-hook {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(16, 18, 20, 0.75);
+      margin-bottom: 28px;
+    }
+
+    .inquiry-email-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .email-link {
+      color: var(--green);
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 700;
+      word-break: break-all;
+      transition: color 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .email-link:hover {
+      color: var(--dark-green);
+      text-decoration: underline;
+    }
+
+    .btn-quick-compose {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(26, 122, 90, 0.08);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 200ms ease, color 200ms ease;
+    }
+
+    .btn-quick-compose:hover {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       SECTION 02: OFFICE LOCATION SHOWCASE & VISUALS
+    ========================================================= */
+    .section-office {
+      padding: 60px 5vw 100px;
+      max-width: 1240px;
+      margin: 0 auto;
+      scroll-margin-top: 100px;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.15;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .office-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .office-details-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: clamp(36px, 4vw, 48px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    }
+
+    .office-headline {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .office-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(26, 122, 90, 0.08);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .info-content h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .info-content p {
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    .btn-maps-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      background: var(--green);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(26, 122, 90, 0.2);
+      transition: background 250ms ease, transform 250ms ease;
+    }
+
+    .btn-maps-action:hover {
+      background: var(--dark-green);
+      transform: translateY(-2px);
+    }
+
+    .office-visual-wrap {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--border-light);
+      background: #0d1e19;
+    }
+
+    .office-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 500ms ease;
+    }
+
+    .office-visual-wrap:hover .office-img {
+      transform: scale(1.02);
+    }
+
+    .office-img-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px 28px;
+      background: linear-gradient(180deg, transparent 0%, rgba(9, 23, 19, 0.92) 100%);
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .overlay-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .overlay-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* =========================================================
+       SECTION 03: INTERACTIVE CONTACT FORM
+    ========================================================= */
+    .section-form {
+      padding: 80px 5vw;
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .form-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .form-intro {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.15;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 16px;
+      text-wrap: balance;
+      text-wrap: pretty;
+    }
+
+    .form-subtitle {
+      font-size: 18.5px;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.72;
+    }
+
+    .cactus-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(16, 18, 20, 0.85);
+    }
+
+    .form-label span.req {
+      color: var(--green);
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 16px 20px;
+      border: 1px solid rgba(16, 18, 20, 0.15);
+      border-radius: 12px;
+      background: var(--cream);
+      color: var(--black);
+      font-size: 15px;
+      transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(26, 122, 90, 0.12);
+    }
+
+    .form-textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .btn-submit-form {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 42px;
+      background: var(--green);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      transition: background 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+    }
+
+    .btn-submit-form:hover {
+      background: var(--dark-green);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(26, 122, 90, 0.25);
+    }
+
+    .form-status-msg {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green);
+      display: none;
+    }
+
+    /* =========================================================
+       SECTION 04: SOCIAL ECOSYSTEM
+    ========================================================= */
+    .section-social-eco {
+      padding: 80px 5vw;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .social-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-box h3 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .social-box p {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 600px;
+    }
+
+    .social-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: 999px;
+      color: var(--black);
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 200ms ease, border-color 200ms ease, background 200ms ease, color 200ms ease;
+    }
+
+    .social-pill:hover {
+      background: var(--green);
+      color: #ffffff;
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    /* =========================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+    ========================================================= */
+    .site-footer {
+      background-color: #151A17;
+      color: #F4F1E8;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .site-footer__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(80px, 9vw, 120px) 5vw 40px;
+    }
+
+    .site-footer__grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.35fr) minmax(130px, 0.75fr) minmax(240px, 1.15fr) minmax(200px, 0.95fr);
+      gap: clamp(32px, 4.5vw, 64px);
+      align-items: start;
+    }
+
+    /* Column 1: Cactus Identity */
+    .site-footer__col--brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-footer__logo-link {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+
+    .site-footer__logo {
+      width: 148px;
+      height: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .site-footer__tagline-meta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #9A9D96;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .site-footer__positioning {
+      font-size: 14.5px;
+      line-height: 1.68;
+      color: #9A9D96;
+      max-width: 320px;
+      margin-bottom: 28px;
+    }
+
+    .site-footer__socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .site-footer__social-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(244, 241, 232, 0.16);
+      border-radius: 50%;
+      color: #F4F1E8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__social-btn:hover {
+      background-color: #24523F;
+      border-color: #24523F;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Headings for Col 2, 3, 4 */
+    .site-footer__heading {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #F4F1E8;
+      margin-bottom: 24px;
+    }
+
+    /* Nav list styling */
+    .site-footer__nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .site-footer__nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9A9D96;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__nav-link:hover {
+      color: #F4F1E8;
+      transform: translateX(4px);
+    }
+
+    /* Column 3: Our Family 2-column subgrid */
+    .site-footer__family-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 28px;
+    }
+
+    /* Column 4: Get in touch address & CTA */
+    .site-footer__address {
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-footer__contact-line {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #9A9D96;
+      margin: 0;
+    }
+
+    .site-footer__contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+    }
+
+    .site-footer__contact-link {
+      font-size: 14px;
+      color: #9A9D96;
+      text-decoration: none;
+      transition: color 300ms ease;
+    }
+
+    .site-footer__contact-link:hover {
+      color: #F4F1E8;
+    }
+
+    .site-footer__talk-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: #F4F1E8;
+      text-decoration: none;
+      transition: color 300ms ease, gap 300ms ease;
+    }
+
+    .site-footer__talk-cta span {
+      position: relative;
+    }
+
+    .site-footer__talk-cta span::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0.7);
+      transform-origin: left;
+      transition: transform 300ms ease;
+    }
+
+    .site-footer__talk-cta:hover {
+      color: #2feaa0;
+      gap: 12px;
+    }
+
+    .site-footer__talk-cta:hover span::after {
+      transform: scaleX(1);
+    }
+
+    /* Bottom Bar */
+    .site-footer__bottom {
+      margin-top: clamp(60px, 7vw, 90px);
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+      color: #9A9D96;
+      letter-spacing: 0.03em;
+    }
+
+    .site-footer__copyright {
+      font-size: 12px;
+      color: #9A9D96;
+    }
+
+    .site-footer__back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9A9D96;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+      transition: color 250ms ease, transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover {
+      color: #F4F1E8;
+      transform: translateY(-2px);
+    }
+
+    .site-footer__back-arrow {
+      font-size: 13px;
+      line-height: 1;
+      display: inline-block;
+      transition: transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover .site-footer__back-arrow {
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .site-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px 36px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 2;
+      }
+      .site-footer__positioning {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-footer__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 1;
+      }
+      .site-footer__family-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 20px;
+      }
+      .site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+
+    /* =========================================================
+       NAV SHEET
+    ========================================================= */
+    .navsheet {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      transition: visibility 0s linear .44s;
+    }
+
+    .navsheet.is-open {
+      visibility: visible;
+      transition: visibility 0s linear 0s;
+    }
+
+    .navsheet__scrim {
+      position: absolute; inset: 0;
+      background: rgba(5,17,24,0.50);
+      opacity: 0;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: opacity .32s ease, backdrop-filter .32s ease;
+    }
+
+    .navsheet.is-open .navsheet__scrim {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navsheet__panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(100%, 480px);
+      display: flex; flex-direction: column;
+      padding: 120px clamp(32px,6vw,56px) 48px;
+      padding-bottom: max(48px, env(safe-area-inset-bottom));
+      background: radial-gradient(circle at 85% 12%, rgba(47, 234, 160, 0.12) 0%, transparent 55%),
+                  linear-gradient(165deg, #12211C 0%, #0d1a16 45%, #070f0c 100%);
+      backdrop-filter: blur(30px) saturate(140%);
+      -webkit-backdrop-filter: blur(30px) saturate(140%);
+      border-left: 1px solid rgba(47, 234, 160, 0.14);
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.65), inset 1px 0 0 rgba(47, 234, 160, 0.06);
+      color: #fff;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .44s cubic-bezier(.7, 0, .84, 0);
+    }
+
+    .navsheet.is-open .navsheet__panel {
+      transform: translateX(0);
+      transition: transform .68s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .navsheet__list { list-style: none; }
+    .navsheet__list li { border-top: 1px solid rgba(255,255,255,0.08); }
+    .navsheet__list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .navsheet__link {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: clamp(18px,2.8vh,26px) 2px;
+      text-decoration: none;
+      color: #fff;
+      font-size: clamp(1.8rem,5vw,2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease, color .25s ease;
+    }
+
+    .navsheet.is-open .navsheet__link {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1), color .25s ease;
+      transition-delay: calc(.18s + var(--i) * .07s), calc(.18s + var(--i) * .07s), 0s;
+    }
+
+    .navsheet__link svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0; opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .navsheet__link:hover, .navsheet__link:focus-visible, .navsheet__link.active { color: #2feaa0; }
+    .navsheet__link:hover svg, .navsheet__link:focus-visible svg, .navsheet__link.active svg { opacity: 1; transform: translateX(0); }
+
+    .navsheet__foot {
+      margin-top: auto;
+      padding-top: clamp(32px,6vh,56px);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .navsheet.is-open .navsheet__foot {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+      transition-delay: .44s;
+    }
+
+    .navsheet__contact { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .navsheet__contact a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color .2s ease; }
+    .navsheet__contact a:hover { color: #fff; }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 1024px) {
+      .inquiries-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .inquiry-card:nth-child(5) {
+        grid-column: span 1;
+      }
+      .office-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .inquiries-grid {
+        grid-template-columns: 1fr;
+      }
+      .inquiry-card:nth-child(4),
+      .inquiry-card:nth-child(5) {
+        grid-column: span 1;
+      }
+      .cactus-form {
+        grid-template-columns: 1fr;
+      }
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-submit-form {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header {
+        padding: 20px 5vw;
+      }
+      .contact-hero {
+        padding-top: 110px;
+        padding-bottom: 90px;
+      }
+      .office-img {
+        height: 320px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+  <header class="header" id="siteHeader">
+    <a href="index.html" class="logo-wrap">
+      <img src="cactus-logo.png" class="logo" alt="Cactus Ethiopia" />
+    </a>
+
+    <div class="header-nav">
+      <span class="explore" id="exploreBtn">Explore</span>
+      <button class="menu-button" id="menuBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================
+         HERO SECTION
+    ======================================================== -->
+    <section class="contact-hero">
+      <!-- Monumental Oversized Brand Mark in Contact Hero -->
+      <div class="brand-monolith brand-monolith--hero-right brand-monolith--theme-obsidian" data-parallax data-parallax-speed="0.06" data-base-transform="rotate(-3deg)" aria-hidden="true">
+        <img src="assets/cactus-mark.svg" alt="" />
+      </div>
+      <div class="contact-hero-inner">
+        <span class="hero-eyebrow text-reveal-eyebrow">Connect With Cactus Ethiopia</span>
+        <h1 class="hero-heading editorial-reveal-target">
+          <span class="editorial-mask"><span class="editorial-reveal-line">&ldquo;Let’s build something</span></span>
+          <span class="editorial-mask"><span class="editorial-reveal-line"><span>Ethiopia will&nbsp;notice.&rdquo;</span></span></span>
+        </h1>
+        <div class="hero-actions-row text-reveal-eyebrow">
+          <a href="#message-form" class="btn-hero-primary">
+            Direct Project Brief &darr;
+          </a>
+          <a href="#location" class="btn-hero-secondary">
+            Office Location
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         SECTION 01: OFFICE LOCATION & VISUALS
+    ======================================================== -->
+    <section class="section-office" id="location" aria-label="Headquarters & Office Location">
+      <div class="section-header">
+        <span class="section-eyebrow text-reveal-eyebrow">Headquarters</span>
+        <h2 class="section-heading editorial-reveal-target">
+          <span class="editorial-mask"><span class="editorial-reveal-line">Office Location &amp; Visiting Hours</span></span>
+        </h2>
+      </div>
+
+      <div class="office-grid">
+        <!-- Left: Office Details -->
+        <div class="office-details-card">
+          <h3 class="office-headline text-reveal-body">Cactus Ethiopia Headquarters</h3>
+          <div class="office-info-list">
+            <!-- Address -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="info-content">
+                <h4 class="text-reveal-eyebrow">Address</h4>
+                <p class="text-reveal-body">Cactus Plaza - 2nd Floor, Bole Road, Addis Ababa, Ethiopia</p>
+              </div>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="info-content">
+                <h4 class="text-reveal-eyebrow">Opening Hours</h4>
+                <p class="text-reveal-body">Monday &ndash; Friday: 8:30 AM &ndash; 5:30 PM (EAT / GMT+3)<br><span style="font-size:13.5px; font-weight:400; color:var(--muted);">Saturday &ndash; Sunday: Closed / Production On Call</span></p>
+              </div>
+            </div>
+
+            <!-- Phone & Contact -->
+            <div class="info-item">
+              <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="info-content">
+                <h4 class="text-reveal-eyebrow">Telephone &amp; Main Line</h4>
+                <p class="text-reveal-body"><a href="tel:+251115544901" style="color:inherit; text-decoration:none;">+251 11 554 4901</a></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Google Map CTA -->
+          <a href="https://maps.google.com/?q=Cactus+Plaza+Bole+Road+Addis+Ababa+Ethiopia" target="_blank" rel="noopener noreferrer" class="btn-maps-action text-reveal-eyebrow">
+            Open in Google Maps
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </div>
+
+        <!-- Right: Office Building Visual -->
+        <div class="office-visual-wrap">
+          <img src="assets/cactusplaza.png" alt="Cactus Plaza Headquarters on Bole Road, Addis Ababa" class="office-img" loading="lazy" />
+          <div class="office-img-overlay">
+            <div>
+              <div class="overlay-title">Cactus Plaza</div>
+              <div class="overlay-sub">2nd Floor &middot; Bole Road &middot; Addis Ababa</div>
+            </div>
+            <a href="https://maps.google.com/?q=Cactus+Plaza+Bole+Road+Addis+Ababa+Ethiopia" target="_blank" rel="noopener noreferrer" style="color:var(--green-bright); font-weight:700; font-size:13px; text-decoration:none;">
+              Get Directions &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         SECTION 03: INTERACTIVE DIRECT MESSAGE FORM
+    ======================================================== -->
+    <section class="section-form" id="message-form" aria-label="Send Direct Brief">
+      <div class="form-container">
+        <div class="form-intro">
+          <span class="section-eyebrow text-reveal-eyebrow">Start A Conversation</span>
+          <h2 class="form-title editorial-reveal-target">
+            <span class="editorial-mask"><span class="editorial-reveal-line">Send Us A Direct Project Brief</span></span>
+          </h2>
+          <p class="form-subtitle text-reveal-body">
+            Tell us about your brand challenge, campaign objectives, or creative requirements. Your note will route directly to the department lead.
+          </p>
+        </div>
+
+        <form class="cactus-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+          <!-- Department Selector -->
+          <div class="form-group full-width">
+            <label class="form-label" for="deptSelect">Inquiry Category <span class="req">*</span></label>
+            <select class="form-select" id="deptSelect" required>
+              <option value="New Business / Marketing">New Business / Marketing (info@cactusethiopia.com)</option>
+              <option value="Digital Services">Digital Services (saba.medhin@cactusethiopia.com)</option>
+              <option value="Production">Production — Film, Radio &amp; Content (biruk.bisrat@cactusethiopia.com)</option>
+              <option value="Media">Media — Planning &amp; Buying (tihut.zekarias@cactusethiopia.com)</option>
+              <option value="HR / Careers">HR / Careers &amp; Portfolios (info@cactusethiopia.com)</option>
+            </select>
+          </div>
+
+          <!-- Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="fullName">Your Full Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="fullName" placeholder="e.g. Almaz Tadesse" required />
+          </div>
+
+          <!-- Company / Brand -->
+          <div class="form-group">
+            <label class="form-label" for="companyName">Company / Brand Name <span class="req">*</span></label>
+            <input type="text" class="form-input" id="companyName" placeholder="e.g. Ethiopian Enterprises" required />
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label class="form-label" for="emailAddr">Work Email Address <span class="req">*</span></label>
+            <input type="email" class="form-input" id="emailAddr" placeholder="name@company.com" required />
+          </div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label class="form-label" for="phoneNum">Phone / Mobile Number</label>
+            <input type="tel" class="form-input" id="phoneNum" placeholder="+251 9... or landline" />
+          </div>
+
+          <!-- Message -->
+          <div class="form-group full-width">
+            <label class="form-label" for="projectBrief">Project Overview or Inquiries <span class="req">*</span></label>
+            <textarea class="form-textarea" id="projectBrief" placeholder="Share context about your brand, timeline, deliverables, or inquiry details..." required></textarea>
+          </div>
+
+          <!-- Action -->
+          <div class="form-actions">
+            <button type="submit" class="btn-submit-form">
+              Send Direct Inquiry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <span class="form-status-msg" id="formStatusMsg">✓ Thank you! Opening your email client to send your message...</span>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         SECTION 04: SOCIAL ECOSYSTEM
+    ======================================================== -->
+    <section class="section-social-eco" aria-label="Social Ecosystem">
+      <div class="social-box">
+        <h3 class="editorial-reveal-target">
+          <span class="editorial-mask"><span class="editorial-reveal-line">Our Social Channels</span></span>
+        </h3>
+        <p class="text-reveal-body">
+          Stay updated with our latest creative campaigns, behind-the-scenes production footage, team culture, and industry perspectives.
+        </p>
+        <div class="social-pills-row text-reveal-eyebrow">
+          <a href="https://www.linkedin.com/company/cactus-advertising/" target="_blank" rel="noopener noreferrer" class="social-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://www.instagram.com/cactusethiopia/?hl=en" target="_blank" rel="noopener noreferrer" class="social-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/cactusethiopia" target="_blank" rel="noopener noreferrer" class="social-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/></svg>
+            Facebook
+          </a>
+          <a href="https://www.tiktok.com/@cactusethiopia?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            TikTok
+          </a>
+          <a href="https://www.youtube.com/@cactusethiopia" target="_blank" rel="noopener noreferrer" class="social-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+  ======================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer__inner">
+
+      <!-- MAIN 4-COLUMN GRID -->
+      <div class="site-footer__grid">
+
+        <!-- COLUMN 1: CACTUS IDENTITY -->
+        <div class="site-footer__col site-footer__col--brand">
+          <a href="index.html" class="site-footer__logo-link" aria-label="Cactus Ethiopia Home">
+            <img src="cactus-logo.png" alt="Cactus Ethiopia" class="site-footer__logo" />
+          </a>
+          <div class="site-footer__tagline-meta text-reveal-eyebrow">
+            <span>COMMUNICATIONS &middot; ADVERTISING &middot; PRODUCTION</span>
+          </div>
+          <p class="site-footer__positioning text-reveal-body">
+            Two decades of shaping Ethiopian brand culture with bold ideas, strategic precision, and relentless creative execution.
+          </p>
+          <div class="site-footer__socials text-reveal-eyebrow" aria-label="Social media links">
+            <a href="https://www.linkedin.com/company/cactus-advertising/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/cactusethiopia/?hl=en" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@cactusethiopia?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: EXPLORE -->
+        <div class="site-footer__col site-footer__col--nav">
+          <h4 class="site-footer__heading text-reveal-eyebrow">EXPLORE</h4>
+          <ul class="site-footer__nav-list">
+            <li><a href="about.html" class="site-footer__nav-link text-reveal-body">About</a></li>
+            <li><a href="services.html" class="site-footer__nav-link text-reveal-body">Capabilities / Services</a></li>
+            <li><a href="work.html" class="site-footer__nav-link text-reveal-body">Work</a></li>
+            <li><a href="partners.html" class="site-footer__nav-link text-reveal-body">Our Family</a></li>
+            <li><a href="about.html#team" class="site-footer__nav-link text-reveal-body">People</a></li>
+            <li><a href="contact.html" class="site-footer__nav-link text-reveal-body">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: OUR FAMILY -->
+        <div class="site-footer__col site-footer__col--family">
+          <h4 class="site-footer__heading text-reveal-eyebrow">OUR FAMILY</h4>
+          <div class="site-footer__family-grid">
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#prologue" class="site-footer__nav-link text-reveal-body">Prologue</a></li>
+              <li><a href="partners.html#pulse" class="site-footer__nav-link text-reveal-body">Pulse Marketing</a></li>
+              <li><a href="partners.html#whats-out" class="site-footer__nav-link text-reveal-body">What’s Out</a></li>
+            </ul>
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#omnimedia" class="site-footer__nav-link text-reveal-body">OmniMedia</a></li>
+              <li><a href="partners.html#canvas" class="site-footer__nav-link text-reveal-body">Canvas</a></li>
+              <li><a href="contact.html#plaza" class="site-footer__nav-link text-reveal-body">Cactus Plaza</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- COLUMN 4: GET IN TOUCH -->
+        <div class="site-footer__col site-footer__col--contact">
+          <h4 class="site-footer__heading text-reveal-eyebrow">GET IN TOUCH</h4>
+          <address class="site-footer__address">
+            <p class="site-footer__contact-line text-reveal-body">Addis Ababa, Ethiopia</p>
+            <p class="site-footer__contact-line text-reveal-body">Bole Road</p>
+            <p class="site-footer__contact-line text-reveal-body">Cactus Plaza, 2nd Floor</p>
+            <div class="site-footer__contact-meta">
+              <a href="mailto:info@cactusethiopia.com" class="site-footer__contact-link text-reveal-body">info@cactusethiopia.com</a>
+              <a href="tel:+251115544901" class="site-footer__contact-link text-reveal-body">+251 11 554 4901</a>
+            </div>
+            <a href="contact.html" class="site-footer__talk-cta text-reveal-eyebrow">
+              <span>let's talk</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </address>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM BAR: HORIZONTAL DIVIDER + LEGAL + BACK TO TOP -->
+      <div class="site-footer__bottom">
+        <div class="site-footer__copyright text-reveal-eyebrow">
+          &copy; 2026 Cactus. All rights reserved.
+        </div>
+        <button type="button" class="site-footer__back-to-top text-reveal-eyebrow" id="backToTopBtn" aria-label="Back to top">
+          <span>BACK TO TOP</span>
+          <span class="site-footer__back-arrow">&uarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =======================================================
+       NAV SHEET
+  ======================================================== -->
+  <div class="navsheet" id="navSheet" inert>
+    <div class="navsheet__scrim" id="navCloseScrim"></div>
+    <nav class="navsheet__panel" aria-label="Menu">
+      <ul class="navsheet__list">
+        <li style="--i:0"><a class="navsheet__link" href="index.html"><span>Home Page</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:1"><a class="navsheet__link" href="about.html"><span>About Us</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:2"><a class="navsheet__link" href="work.html"><span>Our Work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:3"><a class="navsheet__link" href="services.html"><span>Our Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:4"><a class="navsheet__link" href="partners.html"><span>Our Partners</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:5"><a class="navsheet__link active" href="contact.html"><span>Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+      <div class="navsheet__foot">
+        <div class="navsheet__contact">
+          Cactus Plaza - 2nd Floor, Bole Road<br>
+          Addis Ababa, Ethiopia<br>
+          <a href="tel:+251115544901">+251 11 554 4901</a><br>
+          <a href="mailto:info@cactusethiopia.com">info@cactusethiopia.com</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- =======================================================
+       SCRIPTS
+  ======================================================== -->
+  <script>
+    // Header scroll background behavior
+    const siteHeader = document.getElementById("siteHeader");
+    const handleScroll = () => {
+      if (window.scrollY > 60) {
+        siteHeader.classList.add("is-scrolled");
+      } else {
+        siteHeader.classList.remove("is-scrolled");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    // Menu toggle behavior
+    const menuBtn = document.getElementById("menuBtn");
+    const exploreBtn = document.getElementById("exploreBtn");
+    const navSheet = document.getElementById("navSheet");
+    const navClose = document.getElementById("navCloseScrim");
+    let isMenuOpen = false;
+
+    function setMenu(open) {
+      isMenuOpen = open;
+      if (navSheet) navSheet.classList.toggle("is-open", isMenuOpen);
+      if (menuBtn) menuBtn.classList.toggle("is-active", isMenuOpen);
+      if (isMenuOpen) {
+        navSheet.removeAttribute("inert");
+      } else {
+        navSheet.setAttribute("inert", "");
+      }
+    }
+
+    if (menuBtn) menuBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (exploreBtn) exploreBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (navClose) navClose.addEventListener("click", () => setMenu(false));
+    if (navSheet) {
+      navSheet.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+      });
+    }
+    window.addEventListener("keydown", (e) => {
+      if ((e.key === "Escape" || e.key === "Esc") && isMenuOpen) setMenu(false);
+    });
+
+    // Select department from cards
+    function selectDepartment(deptName) {
+      const select = document.getElementById("deptSelect");
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.startsWith(deptName) || select.options[i].text.includes(deptName)) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      const formEl = document.getElementById("message-form");
+      if (formEl) {
+        const top = formEl.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      document.getElementById("fullName").focus();
+    }
+
+    // Form submission handler
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const dept = document.getElementById("deptSelect").value;
+      const name = document.getElementById("fullName").value;
+      const company = document.getElementById("companyName").value;
+      const email = document.getElementById("emailAddr").value;
+      const phone = document.getElementById("phoneNum").value;
+      const brief = document.getElementById("projectBrief").value;
+
+      // Department email routing map
+      const deptEmailMap = {
+        "New Business / Marketing": "info@cactusethiopia.com",
+        "Digital Services": "saba.medhin@cactusethiopia.com",
+        "Production": "biruk.bisrat@cactusethiopia.com",
+        "Media": "tihut.zekarias@cactusethiopia.com",
+        "HR / Careers": "info@cactusethiopia.com"
+      };
+
+      const recipient = deptEmailMap[dept] || "info@cactusethiopia.com";
+      const subject = encodeURIComponent(`[Website Inquiry] ${dept} — ${company} (${name})`);
+      const body = encodeURIComponent(
+        `Hello Cactus Ethiopia Team,\n\n` +
+        `Department: ${dept}\n` +
+        `Sender Name: ${name}\n` +
+        `Company / Brand: ${company}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone || "Not provided"}\n\n` +
+        `Project Overview / Inquiry:\n${brief}\n\n` +
+        `Sent via cactusethiopia.com`
+      );
+
+      const statusMsg = document.getElementById("formStatusMsg");
+      statusMsg.style.display = "inline-block";
+
+      setTimeout(() => {
+        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+      }, 400);
+    }
+
+    // Back to top smooth scroll
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  </script>
+
+  <!-- Brand Architecture Parallax Engine & Universal Motion Engine -->
+  <script src="assets/brand-architecture.js" defer></script>
+  <script src="assets/motion.js" defer></script>
+</body>
+</html>

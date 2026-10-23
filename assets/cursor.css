@@ -1,0 +1,14 @@
+/* =========================================================
+   CACTUS ETHIOPIA — NATIVE CURSOR RESTORED
+   Custom cursor dot and ring removed per user request.
+========================================================= */
+
+.cursor-dot,
+.cursor-ring,
+#cursorDot,
+#cursorRing {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

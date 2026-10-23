@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title id="pageTitle">Case Study — Cactus Ethiopia | Ideas That Enter Culture</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/motion.css">
+
+  <style>
+    /* =========================================================
+       RESET & DESIGN SYSTEM (Cactus Standard)
+    ========================================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+      --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --green: #1a7a5a;
+      --green-bright: #2feaa0;
+      --cream: #f7f7f4;
+      --cream-card: #ffffff;
+      --black: #101214;
+      --dark-green: #0d211c;
+      --dark-black: #0c1210;
+      --white: #ffffff;
+      --border-light: rgba(16, 18, 20, 0.09);
+      --border-dark: rgba(255, 255, 255, 0.12);
+      --muted: #6b7280;
+      --transition: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.7;
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    button, a {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: none;
+      cursor: pointer;
+    }
+
+    img, video {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* =========================================================
+       STICKY HEADER
+    ========================================================= */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: rgba(13, 33, 28, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 300ms ease, padding 300ms ease;
+    }
+
+    .header.is-scrolled {
+      padding: 16px 5vw;
+      background: rgba(10, 24, 20, 0.98);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-case-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 250ms ease, border-color 250ms ease;
+    }
+
+    .nav-case-selector:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: var(--green-bright);
+    }
+
+    .explore {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: inherit;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .menu-button {
+      width: 30px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      color: inherit;
+      padding: 2px 0;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 300ms ease, opacity 300ms ease;
+      transform-origin: center;
+    }
+
+    .menu-button.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-button.is-active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .menu-button.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================================================
+       HERO BANNER (Editorial Dark Emerald)
+    ========================================================= */
+    .case-hero {
+      position: relative;
+      background: linear-gradient(180deg, #091a15 0%, #0d2720 70%, #10342a 100%);
+      color: #ffffff;
+      padding-top: clamp(120px, 16vh, 160px);
+      padding-bottom: clamp(60px, 8vh, 90px);
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .case-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 75% 20%, rgba(47, 234, 160, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .case-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .breadcrumbs a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--green-bright);
+    }
+
+    .breadcrumbs span.current {
+      color: var(--green-bright);
+    }
+
+    .client-badge-eyebrow {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      margin-bottom: 16px;
+    }
+
+    .case-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 76px);
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 24px;
+      max-width: 1000px;
+      text-wrap: balance;
+      text-wrap: pretty;
+    }
+
+    .case-summary-hook {
+      font-family: var(--font-display);
+      font-size: clamp(21px, 2.3vw, 32px);
+      line-height: 1.4;
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 900px;
+      margin-bottom: 36px;
+    }
+
+    /* Metadata Bar */
+    .case-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .meta-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .meta-value {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .meta-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-chip {
+      display: inline-block;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       HERO MEDIA SHOWCASE
+    ========================================================= */
+    .case-media-section {
+      max-width: 1240px;
+      margin: -40px auto 70px;
+      padding: 0 5vw;
+      position: relative;
+      z-index: 10;
+    }
+
+    .case-media-frame {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0d1e19;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22), 0 10px 25px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .case-media-frame img {
+      width: 100%;
+      height: auto;
+      max-height: 720px;
+      object-fit: contain;
+      background: #091512;
+    }
+
+    .case-media-frame video {
+      width: 100%;
+      height: auto;
+      max-height: 720px;
+      object-fit: cover;
+    }
+
+    .media-caption-bar {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .media-caption-bar span.source-label {
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    /* =========================================================
+       METRICS STRIP
+    ========================================================= */
+    .metrics-section {
+      max-width: 1240px;
+      margin: 0 auto 70px;
+      padding: 0 5vw;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .metric-card {
+      background: var(--cream-card);
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: 28px 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+      transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(26, 122, 90, 0.1);
+      border-color: var(--green);
+    }
+
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--green);
+    }
+
+    .metric-number {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 46px);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(16, 18, 20, 0.75);
+      line-height: 1.4;
+    }
+
+    /* =========================================================
+       EDITORIAL BREAKDOWN GRID (Challenge, Insight, Idea, Impact)
+    ========================================================= */
+    .case-story-section {
+      max-width: 1240px;
+      margin: 0 auto 90px;
+      padding: 0 5vw;
+    }
+
+    .section-intro-eyebrow {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .section-main-heading {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 48px;
+      text-wrap: balance;
+      text-wrap: pretty;
+    }
+
+    .story-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .story-box {
+      background: var(--cream-card);
+      border: 1px solid var(--border-light);
+      border-radius: 0;
+      padding: clamp(32px, 4vw, 44px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+      transition: transform 300ms ease, box-shadow 300ms ease;
+    }
+
+    .story-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .story-step-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .story-step-num svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .story-box-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.5vw, 32px);
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .story-box-body {
+      font-size: 18.5px;
+      line-height: 1.85;
+      color: rgba(16, 18, 20, 0.82);
+    }
+
+    .story-box-body p {
+      margin-bottom: 16px;
+    }
+
+    .story-box-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Special Highlight Box for Impact */
+    .story-box.highlight-impact {
+      background: linear-gradient(135deg, #0d2720 0%, #10342a 100%);
+      color: #ffffff;
+      border: 1px solid rgba(47, 234, 160, 0.3);
+    }
+
+    .story-box.highlight-impact .story-step-num {
+      color: var(--green-bright);
+    }
+
+    .story-box.highlight-impact .story-box-title {
+      color: #ffffff;
+    }
+
+    .story-box.highlight-impact .story-box-body {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* =========================================================
+       COMPLETE NARRATIVE QUOTE
+    ========================================================= */
+    .case-manifesto-section {
+      max-width: 1240px;
+      margin: 0 auto 90px;
+      padding: 0 5vw;
+    }
+
+    .case-manifesto-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-left: 6px solid var(--green);
+      border-radius: 0;
+      padding: clamp(36px, 5vw, 60px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .case-manifesto-quote {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.55;
+      font-style: italic;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .case-manifesto-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .author-name {
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    /* =========================================================
+       PROJECT SWITCHER DRAWER & QUICK NAV
+    ========================================================= */
+    .all-cases-grid-section {
+      background: #091713;
+      color: #ffffff;
+      padding: clamp(80px, 10vh, 120px) 5vw;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .all-cases-container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .all-cases-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .all-cases-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+
+    .all-cases-header p {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 15px;
+      max-width: 500px;
+    }
+
+    .cases-grid-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .case-nav-tile {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0;
+      overflow: hidden;
+      text-decoration: none;
+      color: #ffffff;
+      transition: transform 300ms ease, background 300ms ease, border-color 300ms ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .case-nav-tile:hover, .case-nav-tile.is-current {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--green-bright);
+      transform: translateY(-4px);
+    }
+
+    .case-nav-tile.is-current {
+      border-color: var(--green-bright);
+      box-shadow: 0 0 20px rgba(47, 234, 160, 0.2);
+    }
+
+    .tile-thumb {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      background: #06100d;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tile-body {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .tile-client {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-bright);
+      margin-bottom: 6px;
+    }
+
+    .tile-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .tile-desc {
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.65);
+      margin-top: auto;
+    }
+
+    /* =========================================================
+       PREV / NEXT PROJECT BAR
+    ========================================================= */
+    .next-project-strip {
+      background: var(--cream);
+      padding: 60px 5vw;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .next-strip-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .nav-project-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--black);
+      padding: 16px 28px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: background 250ms ease, transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+    }
+
+    .nav-project-btn:hover {
+      border-color: var(--green);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(26, 122, 90, 0.12);
+      color: var(--green);
+    }
+
+    .nav-project-btn.primary {
+      background: var(--green);
+      color: #ffffff;
+      border-color: var(--green);
+    }
+
+    .nav-project-btn.primary:hover {
+      background: var(--dark-green);
+      color: #ffffff;
+    }
+
+    /* =========================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+    ========================================================= */
+    .site-footer {
+      background-color: #151A17;
+      color: #F4F1E8;
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .site-footer__inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: clamp(80px, 9vw, 120px) 5vw 40px;
+    }
+
+    .site-footer__grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1.35fr) minmax(130px, 0.75fr) minmax(240px, 1.15fr) minmax(200px, 0.95fr);
+      gap: clamp(32px, 4.5vw, 64px);
+      align-items: start;
+    }
+
+    /* Column 1: Cactus Identity */
+    .site-footer__col--brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .site-footer__logo-link {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 14px;
+    }
+
+    .site-footer__logo {
+      width: 148px;
+      height: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .site-footer__tagline-meta {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: #9A9D96;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .site-footer__positioning {
+      font-size: 14.5px;
+      line-height: 1.68;
+      color: #9A9D96;
+      max-width: 320px;
+      margin-bottom: 28px;
+    }
+
+    .site-footer__socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .site-footer__social-btn {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(244, 241, 232, 0.16);
+      border-radius: 50%;
+      color: #F4F1E8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__social-btn:hover {
+      background-color: #24523F;
+      border-color: #24523F;
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Headings for Col 2, 3, 4 */
+    .site-footer__heading {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #F4F1E8;
+      margin-bottom: 24px;
+    }
+
+    /* Nav list styling */
+    .site-footer__nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    .site-footer__nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9A9D96;
+      text-decoration: none;
+      display: inline-block;
+      transition: color 300ms ease, transform 300ms ease;
+    }
+
+    .site-footer__nav-link:hover {
+      color: #F4F1E8;
+      transform: translateX(4px);
+    }
+
+    /* Column 3: Our Family 2-column subgrid */
+    .site-footer__family-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px 28px;
+    }
+
+    /* Column 4: Get in touch address & CTA */
+    .site-footer__address {
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-footer__contact-line {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #9A9D96;
+      margin: 0;
+    }
+
+    .site-footer__contact-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+    }
+
+    .site-footer__contact-link {
+      font-size: 14px;
+      color: #9A9D96;
+      text-decoration: none;
+      transition: color 300ms ease;
+    }
+
+    .site-footer__contact-link:hover {
+      color: #F4F1E8;
+    }
+
+    .site-footer__talk-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      color: #F4F1E8;
+      text-decoration: none;
+      transition: color 300ms ease, gap 300ms ease;
+    }
+
+    .site-footer__talk-cta span {
+      position: relative;
+    }
+
+    .site-footer__talk-cta span::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0.7);
+      transform-origin: left;
+      transition: transform 300ms ease;
+    }
+
+    .site-footer__talk-cta:hover {
+      color: #2feaa0;
+      gap: 12px;
+    }
+
+    .site-footer__talk-cta:hover span::after {
+      transform: scaleX(1);
+    }
+
+    /* Bottom Bar */
+    .site-footer__bottom {
+      margin-top: clamp(60px, 7vw, 90px);
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 241, 232, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+      color: #9A9D96;
+      letter-spacing: 0.03em;
+    }
+
+    .site-footer__copyright {
+      font-size: 12px;
+      color: #9A9D96;
+    }
+
+    .site-footer__back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9A9D96;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: 6px 0;
+      transition: color 250ms ease, transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover {
+      color: #F4F1E8;
+      transform: translateY(-2px);
+    }
+
+    .site-footer__back-arrow {
+      font-size: 13px;
+      line-height: 1;
+      display: inline-block;
+      transition: transform 250ms ease;
+    }
+
+    .site-footer__back-to-top:hover .site-footer__back-arrow {
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .site-footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px 36px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 2;
+      }
+      .site-footer__positioning {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site-footer__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+      }
+      .site-footer__col--brand {
+        grid-column: span 1;
+      }
+      .site-footer__family-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 20px;
+      }
+      .site-footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+    }
+
+    /* =========================================================
+       NAV SHEET (Global Drawer)
+    ========================================================= */
+    .navsheet {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      transition: visibility 0s linear .44s;
+    }
+
+    .navsheet.is-open {
+      visibility: visible;
+      transition: visibility 0s linear 0s;
+    }
+
+    .navsheet__scrim {
+      position: absolute; inset: 0;
+      background: rgba(5,17,24,0.50);
+      opacity: 0;
+      backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
+      transition: opacity .32s ease, backdrop-filter .32s ease;
+    }
+
+    .navsheet.is-open .navsheet__scrim {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navsheet__panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(100%, 480px);
+      display: flex; flex-direction: column;
+      padding: 120px clamp(32px,6vw,56px) 48px;
+      padding-bottom: max(48px, env(safe-area-inset-bottom));
+      background: radial-gradient(circle at 85% 12%, rgba(47, 234, 160, 0.12) 0%, transparent 55%),
+                  linear-gradient(165deg, #12211C 0%, #0d1a16 45%, #070f0c 100%);
+      backdrop-filter: blur(30px) saturate(140%);
+      -webkit-backdrop-filter: blur(30px) saturate(140%);
+      border-left: 1px solid rgba(47, 234, 160, 0.14);
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.65), inset 1px 0 0 rgba(47, 234, 160, 0.06);
+      color: #fff;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform .44s cubic-bezier(.7, 0, .84, 0);
+    }
+
+    .navsheet.is-open .navsheet__panel {
+      transform: translateX(0);
+      transition: transform .68s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .navsheet__list { list-style: none; }
+    .navsheet__list li { border-top: 1px solid rgba(255,255,255,0.08); }
+    .navsheet__list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+    .navsheet__link {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: clamp(18px,2.8vh,26px) 2px;
+      text-decoration: none;
+      color: #fff;
+      font-size: clamp(1.8rem,5vw,2.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease, color .25s ease;
+    }
+
+    .navsheet.is-open .navsheet__link {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1), color .25s ease;
+      transition-delay: calc(.18s + var(--i) * .07s), calc(.18s + var(--i) * .07s), 0s;
+    }
+
+    .navsheet__link svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0; opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .navsheet__link:hover, .navsheet__link:focus-visible, .navsheet__link.active { color: #2feaa0; }
+    .navsheet__link:hover svg, .navsheet__link:focus-visible svg, .navsheet__link.active svg { opacity: 1; transform: translateX(0); }
+
+    .navsheet__foot {
+      margin-top: auto;
+      padding-top: clamp(32px,6vh,56px);
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .navsheet.is-open .navsheet__foot {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .6s cubic-bezier(.16, 1, .3, 1), transform .6s cubic-bezier(.16, 1, .3, 1);
+      transition-delay: .44s;
+    }
+
+    .navsheet__contact { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.8; }
+    .navsheet__contact a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color .2s ease; }
+    .navsheet__contact a:hover { color: #fff; }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 1024px) {
+      .story-grid-4 {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .all-cases-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .next-strip-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .nav-project-btn {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .header {
+        padding: 16px 5vw;
+      }
+      .nav-case-selector span.btn-label {
+        display: none;
+      }
+      .case-hero {
+        padding-top: 110px;
+        padding-bottom: 50px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+  <header class="header" id="siteHeader">
+    <a href="index.html" class="logo-wrap">
+      <img src="cactus-logo.png" class="logo" alt="Cactus Ethiopia" />
+    </a>
+
+    <div class="header-nav">
+      <a href="#all-cases" class="nav-case-selector">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span class="btn-label" id="caseCountBtnLabel">All Case Studies (9)</span>
+      </a>
+      <span class="explore" id="exploreBtn">Explore</span>
+      <button class="menu-button" id="menuBtn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =======================================================
+         CASE STUDY HERO
+    ======================================================== -->
+    <section class="case-hero" id="caseHero">
+      <div class="case-hero-inner">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <a href="work.html">Our Work</a>
+          <span>/</span>
+          <span class="current" id="crumbTitle">Harar Beer</span>
+        </nav>
+
+        <span class="client-badge-eyebrow text-reveal-eyebrow" id="caseEyebrow">Harar Beer &middot; Case Study</span>
+        <h1 class="case-title editorial-reveal-target" id="caseTitle">Pay with Laughter Campaign</h1>
+        <p class="case-summary-hook text-reveal-body" id="caseHook">&ldquo;The world’s first campaign that turned laughter into currency.&rdquo;</p>
+
+        <div class="case-meta-bar text-reveal-eyebrow">
+          <div class="meta-group">
+            <span class="meta-label">Client / Brand</span>
+            <span class="meta-value" id="metaClient">Harar Beer (BGI Ethiopia)</span>
+          </div>
+          <div class="meta-group">
+            <span class="meta-label">Capabilities</span>
+            <div class="meta-tags-list" id="metaTags">
+              <span class="tag-chip">Campaign</span>
+              <span class="tag-chip">Experiential</span>
+              <span class="tag-chip">OOH</span>
+            </div>
+          </div>
+          <div class="meta-group">
+            <span class="meta-label">Market</span>
+            <span class="meta-value">Ethiopia &middot; Nationwide</span>
+          </div>
+          <div class="meta-group">
+            <span class="meta-label">Strategic Result</span>
+            <span class="meta-value" id="metaResult">Strengthened #1 Brand Status</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PRIMARY MEDIA SHOWCASE
+    ======================================================== -->
+    <section class="case-media-section" aria-label="Campaign Media Showcase">
+      <div class="case-media-frame" id="mediaContainer">
+        <!-- Injected via JavaScript (img or video) -->
+      </div>
+      <div class="media-caption-bar text-reveal-eyebrow">
+        <div>
+          <span class="source-label" id="mediaCaptionTitle">Official Campaign Artwork</span> &middot;
+          <span id="mediaCaptionSub">High-impact multi-touchpoint execution</span>
+        </div>
+        <a href="#all-cases" style="color:var(--green); font-weight:700; text-decoration:none;">View more campaigns &darr;</a>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         METRICS STRIP
+    ======================================================== -->
+    <section class="metrics-section" id="metricsSection" aria-label="Key Performance Indicators">
+      <div class="metrics-grid" id="metricsGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- =======================================================
+         THE 4-PART EDITORIAL BREAKDOWN
+    ======================================================== -->
+    <section class="case-story-section" aria-label="Strategic Breakdown">
+      <span class="section-intro-eyebrow text-reveal-eyebrow">Strategic Anatomy</span>
+      <h2 class="section-main-heading editorial-reveal-target">
+        <span class="editorial-mask"><span class="editorial-reveal-line">Challenge, Insight, Idea</span></span>
+        <span class="editorial-mask"><span class="editorial-reveal-line"><span>&amp; Measurable&nbsp;Impact.</span></span></span>
+      </h2>
+
+      <div class="story-grid-4">
+        <!-- Card 1: Challenge -->
+        <article class="story-box">
+          <span class="story-step-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            01 / The Challenge
+          </span>
+          <h3 class="story-box-title">Navigating Market Realities</h3>
+          <div class="story-box-body" id="challengeText">
+            <!-- Injected -->
+          </div>
+        </article>
+
+        <!-- Card 2: Insight -->
+        <article class="story-box">
+          <span class="story-step-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2v1"></path><path d="M12 7a5 5 0 0 0-5 5c0 2 1.5 3.5 2 5h6c.5-1.5 2-3 2-5a5 5 0 0 0-5-5z"></path></svg>
+            02 / The Cultural Insight
+          </span>
+          <h3 class="story-box-title">The Ethiopian Truth</h3>
+          <div class="story-box-body" id="insightText">
+            <!-- Injected -->
+          </div>
+        </article>
+
+        <!-- Card 3: Idea & Execution -->
+        <article class="story-box">
+          <span class="story-step-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            03 / The Big Idea &amp; Execution
+          </span>
+          <h3 class="story-box-title">Creative Transformation</h3>
+          <div class="story-box-body" id="ideaText">
+            <!-- Injected -->
+          </div>
+        </article>
+
+        <!-- Card 4: Impact & Result -->
+        <article class="story-box highlight-impact">
+          <span class="story-step-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            04 / Cultural &amp; Business Impact
+          </span>
+          <h3 class="story-box-title">Measurable Growth</h3>
+          <div class="story-box-body" id="impactText">
+            <!-- Injected -->
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         NARRATIVE QUOTE
+    ======================================================== -->
+    <section class="case-manifesto-section" aria-label="Executive Narrative">
+      <div class="case-manifesto-card">
+        <blockquote class="case-manifesto-quote" id="fullDescriptionQuote">
+          &ldquo;As rising costs made nights out feel harder to justify, Harar Beer faced a clear challenge...&rdquo;
+        </blockquote>
+        <div class="case-manifesto-author">
+          <div style="width:40px; height:40px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px;">
+            C
+          </div>
+          <div>
+            <div class="author-name">Cactus Ethiopia Creative Strategy</div>
+            <div>Culture as Intelligence &middot; Addis Ababa</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         PREV / NEXT STRIP
+    ======================================================== -->
+    <section class="next-project-strip" aria-label="Case Study Navigation">
+      <div class="next-strip-inner">
+        <a href="#" class="nav-project-btn" id="prevCaseBtn">
+          &larr; <span id="prevBtnLabel">Previous Project</span>
+        </a>
+        <a href="work.html" class="nav-project-btn">
+          View All Work &amp; Archives
+        </a>
+        <a href="#" class="nav-project-btn primary" id="nextCaseBtn">
+          <span id="nextBtnLabel">Next Project</span> &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- =======================================================
+         ALL 13 CASE STUDIES DIRECTORY
+    ======================================================== -->
+    <section class="all-cases-grid-section" id="all-cases" aria-label="Browse All Case Studies">
+      <div class="all-cases-container">
+        <div class="all-cases-header">
+          <div>
+            <span class="client-badge-eyebrow text-reveal-eyebrow">Portfolio Index</span>
+            <h2 id="allCasesHeading" class="editorial-reveal-target">Featured Case Studies</h2>
+          </div>
+          <p class="text-reveal-body">
+            Explore how Cactus Ethiopia partners with leading local and multinational brands to shape culture and drive commercial transformation.
+          </p>
+        </div>
+
+        <div class="cases-grid-list" id="allCasesGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =======================================================
+       SITE FOOTER (Architectural Minimal Cactus Editorial)
+  ======================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer__inner">
+
+      <!-- MAIN 4-COLUMN GRID -->
+      <div class="site-footer__grid">
+
+        <!-- COLUMN 1: CACTUS IDENTITY -->
+        <div class="site-footer__col site-footer__col--brand">
+          <a href="index.html" class="site-footer__logo-link" aria-label="Cactus Ethiopia Home">
+            <img src="cactus-logo.png" alt="Cactus Ethiopia" class="site-footer__logo" />
+          </a>
+          <div class="site-footer__tagline-meta text-reveal-eyebrow">
+            <span>COMMUNICATIONS &middot; ADVERTISING &middot; PRODUCTION</span>
+          </div>
+          <p class="site-footer__positioning text-reveal-body">
+            Two decades of shaping Ethiopian brand culture with bold ideas, strategic precision, and relentless creative execution.
+          </p>
+          <div class="site-footer__socials text-reveal-eyebrow" aria-label="Social media links">
+            <a href="https://www.linkedin.com/company/cactus-advertising/" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/cactusethiopia/?hl=en" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@cactusethiopia?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.595 0 9 1.582 9 4.615V8z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@cactusethiopia" target="_blank" rel="noopener noreferrer" class="site-footer__social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: EXPLORE -->
+        <div class="site-footer__col site-footer__col--nav">
+          <h4 class="site-footer__heading text-reveal-eyebrow">EXPLORE</h4>
+          <ul class="site-footer__nav-list">
+            <li><a href="about.html" class="site-footer__nav-link text-reveal-body">About</a></li>
+            <li><a href="services.html" class="site-footer__nav-link text-reveal-body">Capabilities / Services</a></li>
+            <li><a href="work.html" class="site-footer__nav-link text-reveal-body">Work</a></li>
+            <li><a href="partners.html" class="site-footer__nav-link text-reveal-body">Our Family</a></li>
+            <li><a href="about.html#team" class="site-footer__nav-link text-reveal-body">People</a></li>
+            <li><a href="contact.html" class="site-footer__nav-link text-reveal-body">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: OUR FAMILY -->
+        <div class="site-footer__col site-footer__col--family">
+          <h4 class="site-footer__heading text-reveal-eyebrow">OUR FAMILY</h4>
+          <div class="site-footer__family-grid">
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#prologue" class="site-footer__nav-link text-reveal-body">Prologue</a></li>
+              <li><a href="partners.html#pulse" class="site-footer__nav-link text-reveal-body">Pulse Marketing</a></li>
+              <li><a href="partners.html#whats-out" class="site-footer__nav-link text-reveal-body">What’s Out</a></li>
+            </ul>
+            <ul class="site-footer__nav-list">
+              <li><a href="partners.html#omnimedia" class="site-footer__nav-link text-reveal-body">OmniMedia</a></li>
+              <li><a href="partners.html#canvas" class="site-footer__nav-link text-reveal-body">Canvas</a></li>
+              <li><a href="contact.html#plaza" class="site-footer__nav-link text-reveal-body">Cactus Plaza</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- COLUMN 4: GET IN TOUCH -->
+        <div class="site-footer__col site-footer__col--contact">
+          <h4 class="site-footer__heading text-reveal-eyebrow">GET IN TOUCH</h4>
+          <address class="site-footer__address">
+            <p class="site-footer__contact-line text-reveal-body">Addis Ababa, Ethiopia</p>
+            <p class="site-footer__contact-line text-reveal-body">Bole Road</p>
+            <p class="site-footer__contact-line text-reveal-body">Cactus Plaza, 2nd Floor</p>
+            <div class="site-footer__contact-meta">
+              <a href="mailto:info@cactusethiopia.com" class="site-footer__contact-link text-reveal-body">info@cactusethiopia.com</a>
+              <a href="tel:+251115544901" class="site-footer__contact-link text-reveal-body">+251 11 554 4901</a>
+            </div>
+            <a href="contact.html" class="site-footer__talk-cta text-reveal-eyebrow">
+              <span>let's talk</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </address>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM BAR: HORIZONTAL DIVIDER + LEGAL + BACK TO TOP -->
+      <div class="site-footer__bottom">
+        <div class="site-footer__copyright text-reveal-eyebrow">
+          &copy; 2026 Cactus. All rights reserved.
+        </div>
+        <button type="button" class="site-footer__back-to-top text-reveal-eyebrow" id="backToTopBtn" aria-label="Back to top">
+          <span>BACK TO TOP</span>
+          <span class="site-footer__back-arrow">&uarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =======================================================
+       NAV SHEET
+  ======================================================== -->
+  <div class="navsheet" id="navSheet" inert>
+    <div class="navsheet__scrim" id="navCloseScrim"></div>
+    <nav class="navsheet__panel" aria-label="Menu">
+      <ul class="navsheet__list">
+        <li style="--i:0"><a class="navsheet__link" href="index.html"><span>Home Page</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:1"><a class="navsheet__link" href="about.html"><span>About Us</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:2"><a class="navsheet__link active" href="work.html"><span>Our Work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:3"><a class="navsheet__link" href="services.html"><span>Our Services</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:4"><a class="navsheet__link" href="partners.html"><span>Our Partners</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+        <li style="--i:5"><a class="navsheet__link" href="contact.html"><span>Contact</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+      </ul>
+      <div class="navsheet__foot">
+        <div class="navsheet__contact">
+          Cactus Plaza - 2nd Floor, Bole Road<br>
+          Addis Ababa, Ethiopia<br>
+          <a href="tel:+251115544901">+251 11 554 4901</a><br>
+          <a href="mailto:info@cactusethiopia.com">info@cactusethiopia.com</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- =======================================================
+       MASTER DATASET & ROUTER SCRIPT
+  ======================================================== -->
+  <script>
+    const CASE_STUDIES = [
+      {
+        id: "harar-beer",
+        brand: "Harar Beer",
+        projectTitle: "Pay with Laughter Campaign",
+        summary: "The world’s first campaign that turned laughter into currency.",
+        thumbnail: "Case Study Pages/Harar Beer.jpg",
+        mediaType: "image",
+        mediaSrc: "Case Study Pages/Harar Beer.jpg",
+        tags: ["360 Campaign", "Experiential", "OOH", "SAQPay Mobile", "Cultural Movement"],
+        clientGroup: "Harar Beer &middot; BGI Ethiopia",
+        strategicResult: "Strengthened No. 1 Beer Brand in Ethiopia",
+        metrics: [
+          { number: "60K+", label: "Laughter Points Earned via SAQPay" },
+          { number: "36K+", label: "Bottles of Beer Unlocked & Redeemed" },
+          { number: "+6M", label: "Direct Audience & Community Reach" },
+          { number: "+31M", label: "Total Campaign Impressions Across Media" },
+          { number: "No. 1", label: "Consolidated Position as Ethiopia's Top Beer" }
+        ],
+        challenge: "As rising costs made nights out feel harder to justify, Harar Beer faced a clear challenge: how to keep social connection alive in a market where joy was becoming financially filtered.",
+        insight: "The insight was simple but deeply Ethiopian — laughter already works like social currency, breaking tension, creating belonging and making every gathering worth showing up for.",
+        idea: "So Harar created Pay With Laughter, a campaign that turned genuine laughter into real value. Through SAQPay, comedy nights, concerts, bar activations, QR onboarding and live BA-assisted redemption, people could laugh to unlock beer, entry and experiences.",
+        impact: "The result was more than engagement — it became a cultural movement that helped strengthen Harar’s rise as Ethiopia’s No.1 beer brand.",
+        fullDescription: "As rising costs made nights out feel harder to justify, Harar Beer faced a clear challenge: how to keep social connection alive in a market where joy was becoming financially filtered. The insight was simple but deeply Ethiopian — laughter already works like social currency, breaking tension, creating belonging and making every gathering worth showing up for. So Harar created Pay With Laughter, a campaign that turned genuine laughter into real value. Through SAQPay, comedy nights, concerts, bar activations, QR onboarding and live BA-assisted redemption, people could laugh to unlock beer, entry and experiences. The result was more than engagement — it became a cultural movement that helped strengthen Harar’s rise as Ethiopia’s No.1 beer brand."
+      },
+      {
+        id: "vaseline-et",
+        brand: "Vaseline ET",
+        projectTitle: "See the Moisture, Feel the Beauty",
+        summary: "A beauty campaign built around visible care and emotional confidence.",
+        thumbnail: "Case Study Pages/Vaseline ET.png",
+        mediaType: "video",
+        mediaSrc: "hero images/Vaseline — See the Moisture, Feel the Beauty.mp4",
+        posterSrc: "Case Study Pages/Vaseline ET.png",
+        tags: ["TVC / Film", "Digital & Social", "Beauty", "Visible Moisture", "Product Demonstration"],
+        clientGroup: "Vaseline ET &middot; Unilever",
+        strategicResult: "Category Leadership in Daily Radiant Skincare",
+        metrics: [
+          { number: "+42%", label: "Category Trial & Adoption Growth" },
+          { number: "8.4M+", label: "Multi-Channel Video & Social Views" },
+          { number: "No. 1", label: "Most Trusted Daily Skincare Brand" },
+          { number: "100%", label: "Locally Cast & Culturally Resonant Execution" }
+        ],
+        challenge: "Skincare in Ethiopia has long been viewed through a purely clinical lens rather than an empowering daily beauty ritual. Vaseline needed to elevate beyond basic petroleum jelly perceptions to become an indispensable symbol of radiant, glowing, modern skin.",
+        insight: "Ethiopian women take immense personal pride in their skin's natural vitality, but harsh highland and lowland weather creates chronic dryness. True beauty confidence happens when moisture isn't just claimed, but visibly seen and tangibly felt all day long.",
+        idea: "We created “See the Moisture, Feel the Beauty” (በውብ ቆዳ ዝንጥ), an evocative beauty platform contrasting dry urban routines with luminous, supple skin. Supported by cinematic lighting, macro texture close-ups, and genuine morning routine storytelling, we celebrated skin that shines.",
+        impact: "The campaign elevated Vaseline into Ethiopia's defining daily beauty staple, driving unprecedented volume growth across lotion lines and cementing category dominance across modern trade and neighborhood kiosks.",
+        fullDescription: "Built around visible care and emotional confidence, “See the Moisture, Feel the Beauty” repositioned Vaseline Ethiopia from functional recovery into an everyday beauty essential. By uniting high-production cinematic film with culturally grounded morning beauty routines, the campaign empowered women across the nation to celebrate their skin’s natural radiance and resilience."
+      },
+      {
+        id: "pepsi-et",
+        brand: "PEPSI ET",
+        projectTitle: "Thirsty for More",
+        summary: "A youth-driven brand platform powered by energy, ambition, and culture.",
+        thumbnail: "Case Study Pages/Client PEPSI ET.jpg",
+        mediaType: "video",
+        mediaSrc: "hero images/Pepsi — Thirsty for More.mp4",
+        posterSrc: "Case Study Pages/Client PEPSI ET.jpg",
+        tags: ["360 Brand Platform", "OOH Blitz", "Nationwide UTC Promotion", "Youth Culture", "Film"],
+        clientGroup: "PEPSI ET &middot; Beverage / FMCG",
+        strategicResult: "Over 30% Market Share & +68% Brand Power",
+        metrics: [
+          { number: ">30%", label: "National Market Share Attained" },
+          { number: "+68%", label: "Surge in Measured Brand Power" },
+          { number: "1M+", label: "Free Pepsi Bottles Unlocked by Consumers" },
+          { number: "100s", label: "Electric Vehicles & Bikes Awarded Nationwide" }
+        ],
+        challenge: "Facing slow growth and declining sales driven by inflation and forex challenges, Pepsi needed to reset momentum, defend loyalty and recruit a new generation of cola consumers.",
+        insight: "The insight was that Ethiopians did not just need another global brand message — they needed one that felt local, rewarding and instantly ownable.",
+        idea: "So we brought “Thirsty for More” to Ethiopia as “ጣመኝ ድገመኝ”, giving the global platform a distinctly Ethiopian voice. To turn awareness into action, we extended the idea into a nationwide UTC promotion, “Thirsty for More Prizes,” where every bottle became a chance to win electric vehicles, bikes and 1 million free Pepsi bottles.",
+        impact: "The campaign reignited excitement around the brand, driving trial, participation and market growth — helping Pepsi reach over 30% market share and grow brand power by over 68%.",
+        fullDescription: "Facing slow growth and declining sales driven by inflation and forex challenges, Pepsi needed to reset momentum, defend loyalty and recruit a new generation of cola consumers. The insight was that Ethiopians did not just need another global brand message — they needed one that felt local, rewarding and instantly ownable. So we brought “Thirsty for More” to Ethiopia as “ጣመኝ ድገመኝ”, giving the global platform a distinctly Ethiopian voice. To turn awareness into action, we extended the idea into a nationwide UTC promotion, “Thirsty for More Prizes,” where every bottle became a chance to win electric vehicles, bikes and 1 million free Pepsi bottles. The campaign reignited excitement around the brand, driving trial, participation and market growth — helping Pepsi reach over 30% market share and grow brand power by over 68%."
+      },
+      {
+        id: "aicc",
+        brand: "AICC - Addis Ababa International Conference Center",
+        projectTitle: "AICC Branding System",
+        summary: "A brand identity system designed to represent ambition at national scale.",
+        thumbnail: "Case Study Pages/AICC - Addis Ababa International Conference Center.png",
+        mediaType: "video",
+        mediaSrc: "hero images/Addis International Conference Center (AICC).mp4",
+        posterSrc: "Case Study Pages/AICC - Addis Ababa International Conference Center.png",
+        tags: ["Brand Identity", "Design Systems", "Screen Animations", "Signage & Wayfinding", "Civic Institution"],
+        clientGroup: "AICC &middot; Civic & Conference Venue",
+        strategicResult: "Turnkey Diplomatic & Global Event Visual System",
+        metrics: [
+          { number: "360°", label: "Complete Architectural & Digital Brand Identity" },
+          { number: "50+", label: "Venue & Signage Touchpoints Unified" },
+          { number: "100%", label: "Modular Design System for Pan-African Summits" }
+        ],
+        challenge: "For the AICC launch, the challenge was to create a large volume of branded assets that could make the conference center feel polished, premium and unified from day one.",
+        insight: "The insight was that a launch of this scale needed more than individual design pieces — it needed a complete visual language that could work across every touchpoint and remain useful beyond the event itself.",
+        idea: "We developed an integrated design system covering screen animations, presentation templates, venue branding, signage and launch materials, ensuring every asset felt connected and easy for the client to apply.",
+        impact: "The result was a cohesive brand environment that elevated the launch experience while giving AICC a practical design toolkit for future communications.",
+        fullDescription: "For the AICC launch, the challenge was to create a large volume of branded assets that could make the conference center feel polished, premium and unified from day one. The insight was that a launch of this scale needed more than individual design pieces — it needed a complete visual language that could work across every touchpoint and remain useful beyond the event itself. We developed an integrated design system covering screen animations, presentation templates, venue branding, signage and launch materials, ensuring every asset felt connected and easy for the client to apply. The result was a cohesive brand environment that elevated the launch experience while giving AICC a practical design toolkit for future communications."
+      },
+      {
+        id: "boa-bank-of-abyssinia",
+        brand: "BOA - Bank of Abyssinia ET",
+        projectTitle: "Award Winning Partnership",
+        summary: "A Client-Agency Partnership worth celebrating.",
+        thumbnail: "Case Study Pages/BOA - Bank of Abyssinia ET.jpg",
+        mediaType: "image",
+        mediaSrc: "Case Study Pages/BOA - Bank of Abyssinia ET.jpg",
+        tags: ["Strategic Partnership", "Financial Services", "360 Campaigns", "Digital Banking", "Omnichannel"],
+        clientGroup: "Bank of Abyssinia &middot; Financial Sector",
+        strategicResult: "Strategic Partnership Recognition Award 2025/26",
+        metrics: [
+          { number: "Award", label: "Strategic Partnership Recognition Award 2025/26" },
+          { number: "Millions", label: "Active Mobile Banking Users Reached" },
+          { number: "Fast", label: "Agile Turnaround on High-Stakes Campaigns" },
+          { number: "Top Tier", label: "Sustained Top-of-Mind Brand Visibility in Banking" }
+        ],
+        challenge: "For Bank of Abyssinia, the challenge was not to deliver one campaign, but to sustain a level of communication support that could keep the brand visible, responsive and top of mind in a highly competitive financial sector.",
+        insight: "The insight was that strong brand momentum is built through more than big ideas alone — it requires speed, consistency, flexibility and a working relationship that keeps agency and client closely aligned.",
+        idea: "Through months of fast, collaborative execution with the Bank’s marketing team, Cactus supported a range of communication needs that helped strengthen the brand’s presence and institutional performance.",
+        impact: "This partnership was formally recognized by Bank of Abyssinia with the Strategic Partnership Recognition Award 2025/26, celebrating Cactus Ethiopia’s professional collaboration, valuable contribution and impactful support to the Bank’s growth.",
+        fullDescription: "For Bank of Abyssinia, the challenge was not to deliver one campaign, but to sustain a level of communication support that could keep the brand visible, responsive and top of mind in a highly competitive financial sector. The insight was that strong brand momentum is built through more than big ideas alone — it requires speed, consistency, flexibility and a working relationship that keeps agency and client closely aligned. Through months of fast, collaborative execution with the Bank’s marketing team, Cactus supported a range of communication needs that helped strengthen the brand’s presence and institutional performance. This partnership was formally recognized by Bank of Abyssinia with the Strategic Partnership Recognition Award 2025/26, celebrating Cactus Ethiopia’s professional collaboration, valuable contribution and impactful support to the Bank’s growth."
+      },
+      {
+        id: "walia-beer",
+        brand: "Walia Beer",
+        projectTitle: "No one Like Us Campaign",
+        summary: "Repositioning Walia as the Beer for the Next Generation",
+        thumbnail: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+        mediaType: "image",
+        mediaSrc: "hero images/imgi_7_MicrosoftTeams-image-scaled.jpg",
+        tags: ["Music Video Production", "Cultural Repositioning", "Youth Engagement", "Film & TVC", "Gen Z"],
+        clientGroup: "Walia Beer &middot; Heineken Ethiopia",
+        strategicResult: "Deep Youth Cult Reputation & Category Modernization",
+        metrics: [
+          { number: "No. 1", label: "Cultural Music Video with Rophnan" },
+          { number: "+85%", label: "Gen Z Brand Affinity & Recall" },
+          { number: "Viral", label: "Organic Trend Across TikTok & Instagram" }
+        ],
+        challenge: "For Walia Beer, the challenge was to connect with Ethiopia’s Gen Z in a way that felt authentic to their energy, confidence and cultural moment.",
+        insight: "The insight was that every generation believes it is different — but this one truly carries a distinct spirit of self-expression, music, pride and attitude.",
+        idea: "So we created “No One Like Us,” a campaign that celebrated the uniqueness of a generation alongside the uniqueness of Walia. Partnering with one of Ethiopia’s leading musicians, Rophnan, we went beyond traditional brand advertising by producing a music video for his new album, then adapting it into an advertising version featuring Walia Beer at a vibrant neighbourhood party.",
+        impact: "The campaign gave the brand a strong youth-cultural voice, positioning Walia as the beer for a generation — and a taste — unlike any other.",
+        fullDescription: "For Walia Beer, the challenge was to connect with Ethiopia’s Gen Z in a way that felt authentic to their energy, confidence and cultural moment. The insight was that every generation believes it is different — but this one truly carries a distinct spirit of self-expression, music, pride and attitude. So we created “No One Like Us,” a campaign that celebrated the uniqueness of a generation alongside the uniqueness of Walia. Partnering with one of Ethiopia’s leading musicians, Rophnan, we went beyond traditional brand advertising by producing a music video for his new album, then adapting it into an advertising version featuring Walia Beer at a vibrant neighbourhood party. The campaign gave the brand a strong youth-cultural voice, positioning Walia as the beer for a generation — and a taste — unlike any other."
+      },
+      {
+        id: "dstv-ethiopia",
+        brand: "DStv Ethiopia",
+        projectTitle: "Who Became Us Campaign",
+        summary: "The biggest launch of Ethiopian content.",
+        thumbnail: "hero images/imgi_18_DStv-Project-Haile-01.jpg",
+        mediaType: "image",
+        mediaSrc: "hero images/imgi_18_DStv-Project-Haile-01.jpg",
+        tags: ["Entertainment Platform", "OOH Mockup", "Subscribed Pricing", "Local Cinema & Drama", "Campaign"],
+        clientGroup: "MultiChoice &middot; DStv Ethiopia",
+        strategicResult: "Transformed Seasonal Viewers into Year-Round Subscribers",
+        metrics: [
+          { number: "Record", label: "Highest Ever Ethiopian Content Viewership" },
+          { number: "+40%", label: "Monthly Retention During Non-Football Windows" },
+          { number: "Abol TV", label: "Flagship Channel Became Household Name" }
+        ],
+        challenge: "For DStv Ethiopia, the challenge was to grow beyond seasonal subscriptions, as many customers only renewed during major football periods and did not see enough everyday value in the platform’s wider international content offering.",
+        insight: "The insight was that while global entertainment has appeal, Ethiopian audiences needed to see more of themselves, their stories and their culture on screen to build stronger loyalty.",
+        idea: "So we launched “Who Became Us,” a campaign celebrating DStv’s investment in locally written and produced Ethiopian content, alongside reduced subscription fees that made the service feel more accessible.",
+        impact: "By making DStv feel more local, more relevant and more affordable, the campaign helped shift perception, attract new customers and encourage more regular monthly subscription behavior.",
+        fullDescription: "For DStv Ethiopia, the challenge was to grow beyond seasonal subscriptions, as many customers only renewed during major football periods and did not see enough everyday value in the platform’s wider international content offering. The insight was that while global entertainment has appeal, Ethiopian audiences needed to see more of themselves, their stories and their culture on screen to build stronger loyalty. So we launched “Who Became Us,” a campaign celebrating DStv’s investment in locally written and produced Ethiopian content, alongside reduced subscription fees that made the service feel more accessible. By making DStv feel more local, more relevant and more affordable, the campaign helped shift perception, attract new customers and encourage more regular monthly subscription behavior."
+      },
+      {
+        id: "dil-paints",
+        brand: "DIL Paints",
+        projectTitle: "Brand ID Update and Relaunch",
+        summary: "Bringing a legendary paint brand into a brighter future.",
+        thumbnail: "our work/branding/DILL - Mockup_Pure Color.png",
+        mediaType: "image",
+        mediaSrc: "our work/branding/DILL - Mockup_Pure Color.png",
+        tags: ["Brand Identity", "Packaging Overhaul", "Retail Merchandising", "Relaunch Campaign", "Construction"],
+        clientGroup: "DIL Paints &middot; Building Materials",
+        strategicResult: "Modernized Heritage Brand Dominating Paint Corridors",
+        metrics: [
+          { number: "100%", label: "Complete Packaging & Identity Overhaul" },
+          { number: "+35%", label: "Expansion in Retail Hardware Distribution" },
+          { number: "Top Choice", label: "Specifier Preference Among Architects & Contractors" }
+        ],
+        challenge: "DIL Paints, a pioneering force in Ethiopia's architectural coatings sector, found its heritage visual assets outpaced by newer imported brands, requiring an urgent modernization to defend retail dominance and appeal to a new generation of homebuilders.",
+        insight: "Paint in Ethiopia is more than a wall covering—it represents long-term family security, vibrant pride in the homestead, and weather-resistant durability against relentless sun and torrential rains.",
+        idea: "We orchestrated a total brand ID evolution: modernized typography, an electrifying chromatic color wheel emblem, ergonomic can and bucket packaging architectures with clear finish segmentations (Gloss, Emulsion, Weathercoat), and nationwide dealer livery.",
+        impact: "The relaunch sparked tremendous distributor reorders, filled hardware corridors with unmistakable DIL branding, and established the heritage manufacturer as Ethiopia’s vibrant benchmark for architectural quality.",
+        fullDescription: "Bringing a legendary paint brand into a brighter future. Cactus re-engineered DIL Paints’ visual identity from the can to the billboard, combining vivid contemporary design systems with proven technical dependability to reassert the brand’s leadership across Ethiopia’s burgeoning construction landscape."
+      },
+      {
+        id: "mirinda",
+        brand: "Mirinda",
+        projectTitle: "Under-the-crown Campaign",
+        summary: "An electrifying campaign that captivated the nation.",
+        thumbnail: "Case Study Pages/Mirinda.jpg",
+        mediaType: "image",
+        mediaSrc: "Case Study Pages/Mirinda.jpg",
+        tags: ["Under-the-Crown UTC", "Electric Vehicle Prizes", "OOH Activation", "Summer Promotion", "Retail Velocity"],
+        clientGroup: "Mirinda &middot; Beverage",
+        strategicResult: "Record Dry Season Consumer Frenzy & Sales Uplift",
+        metrics: [
+          { number: "Millions", label: "Crown Caps Collected Nationwide" },
+          { number: "Dozens", label: "Electric Vehicles & Scooters Awarded" },
+          { number: "+28%", label: "Surge in Retail Depletion Rates" }
+        ],
+        challenge: "Generating massive dry-season sales volume in an intensely crowded soft-drink market, converting occasional consumers into daily repeat purchasers.",
+        insight: "Urban Ethiopian youth are fiercely enthusiastic about clean technology and electric mobility, but personal ownership feels out of reach. Giving them a genuine, transparent shot at winning high-tech electric cars under bottle caps makes every sip an exhilarating gamble.",
+        idea: "We unleashed an electrifying 360° Under-the-Crown campaign: explosive orange visuals across every town, high-tempo radio and TV spots, and high-energy street prize handovers awarding cutting-edge electric vehicles and scooters.",
+        impact: "The nation erupted into cap-collecting fever, depleting wholesale warehouses, shattering seasonal sales records, and establishing Mirinda as the ultimate thirst-quencher of electric excitement.",
+        fullDescription: "An electrifying campaign that captivated the nation. Mirinda’s Under-The-Crown promotion combined aspirational electric vehicle prizes with relentless retail theater to turn a seasonal beverage promotion into an unforgettable nationwide celebration."
+      }
+    ];
+
+    // =========================================================
+    // ROUTING & RENDERING
+    // =========================================================
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    function getCurrentCaseId() {
+      const param = getQueryParam("id");
+      if (param) return param.toLowerCase().trim();
+      const hash = window.location.hash.replace("#", "").toLowerCase().trim();
+      if (hash && CASE_STUDIES.some(c => c.id === hash)) return hash;
+      return "harar-beer";
+    }
+
+    function renderCaseStudy(caseId) {
+      const item = CASE_STUDIES.find(c => c.id === caseId) || CASE_STUDIES[0];
+      const currentIndex = CASE_STUDIES.indexOf(item);
+      const prevItem = CASE_STUDIES[(currentIndex - 1 + CASE_STUDIES.length) % CASE_STUDIES.length];
+      const nextItem = CASE_STUDIES[(currentIndex + 1) % CASE_STUDIES.length];
+
+      // Page Title & Hero
+      document.title = `${item.projectTitle} — ${item.brand} | Cactus Ethiopia Case Study`;
+      document.getElementById("crumbTitle").textContent = item.brand;
+      document.getElementById("caseEyebrow").innerHTML = `${item.brand} &middot; Case Study`;
+      document.getElementById("caseTitle").textContent = item.projectTitle;
+      document.getElementById("caseHook").innerHTML = `&ldquo;${item.summary}&rdquo;`;
+
+      // Meta
+      document.getElementById("metaClient").innerHTML = item.clientGroup;
+      document.getElementById("metaResult").textContent = item.strategicResult;
+
+      const tagsContainer = document.getElementById("metaTags");
+      tagsContainer.innerHTML = item.tags.map(t => `<span class="tag-chip">${t}</span>`).join("");
+
+      // Media
+      const mediaContainer = document.getElementById("mediaContainer");
+      if (item.mediaType === "video") {
+        mediaContainer.innerHTML = `
+          <video src="${item.mediaSrc}" ${item.posterSrc ? `poster="${item.posterSrc}"` : ""} autoplay muted loop playsinline controls style="width:100%; height:auto; max-height:720px; object-fit:contain; background:#07120e;"></video>
+        `;
+      } else {
+        mediaContainer.innerHTML = `
+          <img src="${item.mediaSrc}" alt="${item.brand} — ${item.projectTitle}" style="width:100%; height:auto; max-height:720px; object-fit:contain; background:#07120e;" />
+        `;
+      }
+
+      document.getElementById("mediaCaptionTitle").textContent = `${item.brand} &middot; ${item.projectTitle}`;
+      document.getElementById("mediaCaptionSub").textContent = item.summary;
+
+      // Metrics
+      const metricsGrid = document.getElementById("metricsGrid");
+      if (item.metrics && item.metrics.length > 0) {
+        document.getElementById("metricsSection").style.display = "block";
+        metricsGrid.innerHTML = item.metrics.map(m => `
+          <div class="metric-card">
+            <div class="metric-number">${m.number}</div>
+            <div class="metric-label">${m.label}</div>
+          </div>
+        `).join("");
+      } else {
+        document.getElementById("metricsSection").style.display = "none";
+      }
+
+      // Breakdown Texts
+      document.getElementById("challengeText").innerHTML = `<p>${item.challenge}</p>`;
+      document.getElementById("insightText").innerHTML = `<p>${item.insight}</p>`;
+      document.getElementById("ideaText").innerHTML = `<p>${item.idea}</p>`;
+      document.getElementById("impactText").innerHTML = `<p>${item.impact}</p>`;
+
+      // Full Narrative Quote
+      document.getElementById("fullDescriptionQuote").innerHTML = `&ldquo;${item.fullDescription}&rdquo;`;
+
+      // Next / Prev Buttons
+      const prevBtn = document.getElementById("prevCaseBtn");
+      const nextBtn = document.getElementById("nextCaseBtn");
+      prevBtn.href = `case-study.html?id=${prevItem.id}`;
+      document.getElementById("prevBtnLabel").textContent = `${prevItem.brand}: ${prevItem.projectTitle}`;
+
+      nextBtn.href = `case-study.html?id=${nextItem.id}`;
+      document.getElementById("nextBtnLabel").textContent = `${nextItem.brand}: ${nextItem.projectTitle}`;
+
+      // Highlight active in directory grid
+      renderDirectoryGrid(item.id);
+
+      // Update case study count indicators
+      const countBtn = document.getElementById("caseCountBtnLabel");
+      if (countBtn) countBtn.textContent = `All Case Studies (${CASE_STUDIES.length})`;
+      const headingEl = document.getElementById("allCasesHeading");
+      if (headingEl) headingEl.textContent = `All ${CASE_STUDIES.length} Featured Case Studies`;
+    }
+
+    function renderDirectoryGrid(activeId) {
+      const grid = document.getElementById("allCasesGrid");
+      grid.innerHTML = CASE_STUDIES.map(c => `
+        <a href="case-study.html?id=${c.id}" class="case-nav-tile ${c.id === activeId ? 'is-current' : ''}">
+          <img src="${c.thumbnail}" alt="${c.brand}" class="tile-thumb" loading="lazy" />
+          <div class="tile-body">
+            <span class="tile-client">${c.brand}</span>
+            <h4 class="tile-title">${c.projectTitle}</h4>
+            <p class="tile-desc">${c.summary}</p>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    // Scroll Header behavior
+    const siteHeader = document.getElementById("siteHeader");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        siteHeader.classList.add("is-scrolled");
+      } else {
+        siteHeader.classList.remove("is-scrolled");
+      }
+    }, { passive: true });
+
+    // Menu Drawer
+    const menuBtn = document.getElementById("menuBtn");
+    const exploreBtn = document.getElementById("exploreBtn");
+    const navSheet = document.getElementById("navSheet");
+    const navClose = document.getElementById("navCloseScrim");
+    let isMenuOpen = false;
+
+    function setMenu(open) {
+      isMenuOpen = open;
+      if (navSheet) navSheet.classList.toggle("is-open", isMenuOpen);
+      if (menuBtn) menuBtn.classList.toggle("is-active", isMenuOpen);
+      if (isMenuOpen) {
+        navSheet.removeAttribute("inert");
+      } else {
+        navSheet.setAttribute("inert", "");
+      }
+    }
+
+    if (menuBtn) menuBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (exploreBtn) exploreBtn.addEventListener("click", () => setMenu(!isMenuOpen));
+    if (navClose) navClose.addEventListener("click", () => setMenu(false));
+    if (navSheet) {
+      navSheet.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+      });
+    }
+    window.addEventListener("keydown", (e) => {
+      if ((e.key === "Escape" || e.key === "Esc") && isMenuOpen) setMenu(false);
+    });
+
+    // Listen for popstate / hashchange
+    window.addEventListener("popstate", () => {
+      renderCaseStudy(getCurrentCaseId());
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Initial render
+    renderCaseStudy(getCurrentCaseId());
+
+    // Back to top smooth scroll
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    if (backToTopBtn) {
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  </script>
+  <!-- Universal Motion Engine -->
+  <script src="assets/motion.js" defer></script>
+</body>
+</html>
