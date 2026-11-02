@@ -1765,19 +1765,19 @@
       <div class="filter-bar-wrap text-reveal-eyebrow">
         <div class="filter-bar" id="filterBar" role="tablist">
           <button class="filter-btn active" data-filter="tvc" role="tab" aria-selected="true">
-            TVC <span class="pill-count" id="count-tvc">16</span>
+            TVC
           </button>
           <button class="filter-btn" data-filter="360" role="tab" aria-selected="false">
-            360 CAMPAIGNS <span class="pill-count" id="count-360">11</span>
+            360 CAMPAIGNS
           </button>
           <button class="filter-btn" data-filter="digital" role="tab" aria-selected="false">
-            DIGITAL <span class="pill-count" id="count-digital">14</span>
+            DIGITAL
           </button>
           <button class="filter-btn" data-filter="branding" role="tab" aria-selected="false">
-            BRANDING <span class="pill-count" id="count-branding">6</span>
+            BRANDING
           </button>
           <button class="filter-btn" data-filter="case" role="tab" aria-selected="false">
-            CASE STUDY <span class="pill-count" id="count-case">13</span>
+            CASE STUDY
           </button>
         </div>
       </div>
@@ -2700,16 +2700,7 @@
     const activeFilterLabel = document.getElementById("activeFilterLabel");
 
     function updatePillCounts() {
-      const counts = {
-        "tvc": 0, "360": 0, "digital": 0, "branding": 0, "case": 0
-      };
-      workItems.forEach(item => {
-        if (counts[item.category] !== undefined) counts[item.category]++;
-      });
-      for (const [cat, count] of Object.entries(counts)) {
-        const el = document.getElementById(`count-${cat}`);
-        if (el) el.textContent = count;
-      }
+      // Counts removed from filter pills per design update
     }
 
     let videoObserver = null;
